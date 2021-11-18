@@ -1,0 +1,299 @@
+@font-face {
+  font-family: GT-America-Standard-Regular;
+  src: url(Fonts/GT-America-Standard-Regular.otf);
+  font-weight: 200;
+}
+
+
+*{
+  margin: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  font-family: GT-America-Standard-Regular;
+
+  font-size: 12pt;
+}
+
+
+body{
+  width: 100vw;
+  height: 100vh;
+    line-height: 16pt;
+}
+
+.variant {
+  -moz-font-feature-settings: "ss03";
+  -webkit-font-feature-settings: "ss03";
+  font-feature-settings: "ss03";
+}
+
+
+
+.indice{
+  border-top: 1px solid black;
+  padding: 15px 0;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+
+
+.cursor {
+  cursor: pointer;
+}
+
+.hide{
+  display: none;
+}
+
+.window{
+  display: inline-block;
+  width: 50%;
+  height: 100vh;
+  transition: 0.1s;
+}
+
+.pos{
+  padding-top: auto;
+  line-height: 100vh;
+  text-align: center;
+
+}
+
+
+
+.studio-hide{
+  display: none;
+}
+
+.indietro{
+  opacity: 0.2;
+}
+
+.opacity{
+  opacity: 0.2;
+}
+
+.archivio-hide{
+  display: none;
+}
+
+.menu-archivio{
+  display: none;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+
+}
+
+.schede{
+  line-height: 18pt;
+  border-bottom: 1px solid black;
+}
+
+.scheda{
+  width: 100%;
+  border-top: 1px solid black;
+}
+
+
+
+
+.numero{
+  width: 20%;
+  display: inline-block;
+}
+
+.nome{
+  width: 50%;
+  display: inline-block;
+}
+
+.anno{
+  float: right;
+  display: inline-block;
+}
+
+.immagine{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.blue{
+ color: #1C63A3;
+}
+
+.legal-info{
+  display: none;
+}
+
+
+#a60-89{
+  display: none;
+}
+#a89-19{
+  display: none;
+}
+#a20{
+  display: none;
+}
+
+
+#archivio-menu{
+  float: right;
+}
+
+#studio-menu{
+  float: left;
+}
+
+#archivio-cont{
+  float: left;
+  display: none;
+  border-right: 1px solid black;
+  overflow: scroll;
+}
+
+#studio-cont{
+  float: right;
+  display: none;
+  overflow: scroll;
+}
+
+@media only screen and (min-width: 376px) {
+
+  .line-height-more{
+    line-height: 25pt;
+  }
+
+  .padding_top{
+    padding-top: 60px;
+  }
+
+  .padding_bottom{
+    padding-bottom: 40px;
+  }
+
+  .padding_LR{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+}
+
+@media only screen and (max-width: 700px) {
+  *{
+    font-size: 11pt;
+  }
+
+  .padding_LR{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .padding_top{
+    padding-top: 45px;
+  }
+}
+
+
+@media only screen and (max-width: 550px) {
+
+  .window{
+    /* padding-left: 10px;
+    padding-right: 10px; */
+  }
+
+  #studio-menu{
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #archivio-menu{
+    text-align: right;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .padding_top{
+    padding-top: 25px;
+  }
+
+  .padding_bottom{
+    padding-bottom: 25px;
+  }
+
+  .padding_LR{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .w_b{
+    position: absolute;
+    left: 30%;
+    width: 70%;
+  }
+
+  #archivio-cont{
+    border: none;
+    overflow: visible;
+    width: 70vw;
+    position: absolute;
+  }
+
+  .menu-archivio{
+    text-align: center;
+    display: block;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100vw;
+    overflow: visible;
+  }
+
+  .menu-archivio > div{
+    border-top: 1px solid black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .schede{
+    width: 100vw;
+  }
+
+  .scheda{
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .indice{
+    display: none;
+  }
+
+  .arrow{
+    float: left;
+    left: 15px;
+    z-index: 1000;
+    padding-top: 6px;
+    transform: translate(15px, 0);
+  }
+
+  .line-height-more{
+    line-height: 20pt;
+  }
+
+
+
+
+
+
+}
