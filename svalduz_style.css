@@ -35,7 +35,35 @@ body{
   display: inline-block;
   width: 100%;
   text-align: center;
+  position: relative;
+
 }
+
+.indice_center{
+  display: inline-block;
+    position: relative;
+    z-index: 2;
+
+
+}
+
+.indice_right{
+  display: inline-block;
+  position: absolute;
+  right: 40px;
+    z-index: 2;
+}
+
+.red{
+  color: #FF0000;
+  cursor: pointer;
+  transition: 1.5s;
+}
+
+.center{
+  text-align: center;
+}
+
 
 
 
@@ -90,7 +118,7 @@ body{
 }
 
 .schede{
-  line-height: 18pt;
+  line-height: 20pt;
   border-bottom: 1px solid black;
 }
 
@@ -98,6 +126,11 @@ body{
   width: 100%;
   border-top: 1px solid black;
 }
+
+.scheda_click{
+  line-height: 30pt;
+}
+
 
 
 
@@ -117,11 +150,68 @@ body{
   display: inline-block;
 }
 
+
+
 .immagine{
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
   width: 100%;
+  position: relative;
   text-align: center;
+  z-index: 2;
+    transition: 1s;
+}
+
+
+
+.immagine_big{
+  position: absolute;
+  bottom: 20px;
+  overflow: hidden;
+  height: 76vh;
+  width: auto;
+
+}
+
+
+.fullscreen{
+  position: fixed;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.8;
+  z-index: 1;
+  background-color: lightgray ;
+}
+
+
+.testo_scheda{
+  font-size: 12pt;
+  line-height: 14pt;
+  padding-bottom: 70px;
+
+}
+
+.testo_scheda > div{
+
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+
+.foto_n{
+  width: 20%;
+}
+
+
+.content{
+  width: 70%;
+}
+
+.full{
+  text-align: right;
+    width: 10%;
 }
 
 .blue{
@@ -131,6 +221,8 @@ body{
 .legal-info{
   display: none;
 }
+
+
 
 
 #a60-89{
@@ -165,6 +257,9 @@ body{
   overflow: scroll;
 }
 
+
+
+
 @media only screen and (min-width: 376px) {
 
   .line-height-more{
@@ -180,8 +275,8 @@ body{
   }
 
   .padding_LR{
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
 }
@@ -275,9 +370,12 @@ body{
     padding-bottom: 5px;
   }
 
+
   .indice{
     display: none;
   }
+
+
 
   .arrow{
     float: left;
@@ -291,6 +389,9 @@ body{
     line-height: 20pt;
   }
 
+  .cont{
+    padding-top: 40px;
+  }
 
 
 
