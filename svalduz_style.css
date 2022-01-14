@@ -282,6 +282,10 @@ body{
   font-family: GT-America-Standard-Light;
 }
 
+.immagine.no_padding{
+  padding-top: 0;
+}
+
 
 
 

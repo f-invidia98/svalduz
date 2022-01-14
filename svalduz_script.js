@@ -59,12 +59,14 @@ $(".legal-info").click(function() {
 
 var stato = 0;
 
+
+
 $(".scheda_click").click(function() {
 
   if ($(this).parent().parent().hasClass("lui")) {
 
     $(".scheda_click").addClass("hide");
-    $(".testo_scheda").css("padding-bottom", "0");
+    $(".testo_scheda").css("padding-bottom", "20px");
     $(".schede").css("border-bottom", "none");
   } else {
     $(".scheda_click").removeClass("hide");
@@ -103,6 +105,13 @@ if (result != 0) {
   clas = result[0];
   getLink(result[0], result[1]);
 }
+
+
+$(document).on('click', '#cantieriAperti', function(event) {
+    event.preventDefault();
+    $("#mNow").click();
+});
+
 
 
 
@@ -380,6 +389,17 @@ function highlightBlock() {
       }, 1500);
 }
 
+
+
+
+
+$(document).ready(function() {
+  $(document).mousemove(function() {
+    if ($(".scheda_click:hover").length != 0) {
+        $('.scheda_click').css('cursor', 'url("Assets/Sfondo.png"), auto');
+    }
+  });
+});
 
 
 
