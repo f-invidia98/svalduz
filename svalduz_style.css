@@ -4,6 +4,12 @@
   font-weight: 200;
 }
 
+@font-face {
+  font-family: GT-America-Standard-Light;
+  src: url(Fonts/GT-America-Standard-Light.otf);
+  font-weight: 200;
+}
+
 
 *{
   margin: 0;
@@ -19,6 +25,11 @@ body{
   width: 100vw;
   height: 100vh;
     line-height: 16pt;
+}
+
+.border{
+  border-top: 1px solid black;
+  width: 100%;
 }
 
 .variant {
@@ -153,13 +164,17 @@ body{
 
 
 .immagine{
-  padding-top: 40px;
-  padding-bottom: 10px;
+  display: block;
+  padding-top: 23px;
+  padding-bottom: 16px;
   width: 100%;
   position: relative;
   text-align: center;
   z-index: 2;
-    transition: 1s;
+}
+
+.immagine.hide{
+  display: none;
 }
 
 
@@ -168,7 +183,7 @@ body{
   position: absolute;
   bottom: 20px;
   overflow: hidden;
-  height: 76vh;
+  height: 100vh;
   width: auto;
 
 }
@@ -255,6 +270,16 @@ body{
   float: right;
   display: none;
   overflow: scroll;
+}
+
+
+
+
+.content.inCorso{
+  width: 100%;
+  font-size: 40pt;
+  line-height:40pt;
+  font-family: GT-America-Standard-Light;
 }
 
 

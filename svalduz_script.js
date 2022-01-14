@@ -61,9 +61,17 @@ var stato = 0;
 
 $(".scheda_click").click(function() {
 
-  if ($(this).parentsUntil(".schede").hasClass("lui")) {
+  if ($(this).parent().parent().hasClass("lui")) {
+
     $(".scheda_click").addClass("hide");
+    $(".testo_scheda").css("padding-bottom", "0");
+    $(".schede").css("border-bottom", "none");
+  } else {
+    $(".scheda_click").removeClass("hide");
+    $(".testo_scheda").css("padding-bottom", "");
+    $(".schede").css("border-bottom", "");
   }
+
 
 
   if (!$(this).parent().children(".scheda_hide").hasClass("hide")) {
@@ -127,10 +135,10 @@ jQuery(function($) {
   $(document).ready(function() {
     $(document).mousemove(function() {
       if ($(".immagini:hover").length != 0) {
-        if (currentMousePos.x > $(".immagini:hover").width() / 2) {
+        if (currentMousePos.x > $(".immagine:hover").width() / 2) {
           $('.immagine').css('cursor', 'url("Assets/NEXT.png"), auto');
           xcheck = 1;
-        } else if (currentMousePos.x < $(".immagini:hover").width() / 2) {
+        } else if (currentMousePos.x < $(".immagine:hover").width() / 2) {
           $('.immagine').css('cursor', 'url("Assets/PREV.png"), auto');
           xcheck = 0;
         }
@@ -268,11 +276,26 @@ function getLink(anno, num, id) {
 
   window.location = "#" + anno;
 
+  if (num != null && $("#" + num).parent().hasClass("lui")) {
+
+    $(".scheda_click").addClass("hide");
+    $(".testo_scheda").css("padding-bottom", "0");
+    $(".schede").css("border-bottom", "none");
+  } else {
+    $(".scheda_click").removeClass("hide");
+    $(".testo_scheda").css("padding-bottom", "");
+    $(".schede").css("border-bottom", "");
+  }
+
   if (num != null) {
     $(".scheda_hide").addClass("hide")
     $("#" + num).children(".scheda_hide").removeClass("hide")
+    console.log("#" + num)
+
     window.location = "#" + anno + "&" + num;
   }
+
+
 
 
 
@@ -309,6 +332,7 @@ function remove_hash_from_url() {
   }
 }
 
+var altezza = $(".archivio-text").outerHeight()+$(".indice").outerHeight();
 
 
 $(".full").click(function() {
@@ -322,6 +346,7 @@ $(".full").click(function() {
 
   if (!$(".immagine").hasClass("immagine_big")) {
     $(".immagine").addClass("immagine_big")
+    $(".immagine_big").css("height",  "calc(100vh - " +altezza+"px - 30px)")
   }
 })
 
@@ -340,6 +365,7 @@ function exitFullscreen() {
     $(".indice_center").html("Indice ↓")
     $(".indice_right").addClass("hide")
     $(".cantieriAperti").removeClass("hide")
+    $(".immagine").css("height",  "")
   }
 }
 
