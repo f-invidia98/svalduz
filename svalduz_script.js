@@ -16,6 +16,14 @@ function archiv() {
   $("#archivio-cont").css("display", "inline-block")
   $(".archivio-hide").css("display", "inline-block")
   $(".menu-archivio").css("display", "inline-block")
+  if ($(window).width() > 550){
+  $("#aNow").css("display", "block")
+  $("#mNow").addClass("blue")
+}else {
+  $("#aNow").css("display", "")
+  $("#mNow").addClass("")
+}
+
 };
 
 
@@ -238,7 +246,7 @@ $(window).resize(function() {
   }
   else if ($(window).width() <= 551) {
     $(".indice").css("display", "none")
-    $(".menu-archivio > div").addClass("hide")
+    // $(".menu-archivio > div").addClass("hide")
     var id2 = result[0].replace(/a/g, '');
     $("#m" + id2).removeClass("hide")
     $(".arrow").removeClass("hide")
@@ -383,10 +391,12 @@ function exitFullscreen() {
 setInterval(highlightBlock, 3000); // Every two seconds
 
 function highlightBlock() {
-      $('.cantieriAperti').css('color', '#0000FF'); // Change colour
-      setTimeout(function() {
-             $('.cantieriAperti').css('color', 'black'); // Change back
-      }, 1500);
+//       $('.cantieriAperti').css('color', '#0000FF'); // Change colour
+//       setTimeout(function() {
+//              $('.cantieriAperti').css('color', 'white'); // Change back
+//       }, 1500);
+
+$('.cantieriAperti').toggleClass("blue")
 }
 
 

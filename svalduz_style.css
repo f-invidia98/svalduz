@@ -21,10 +21,62 @@
 }
 
 
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2222;
+    border-radius: 10px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+
+
+}
+
+
+
+
+
+
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
 body{
   width: 100vw;
   height: 100vh;
     line-height: 16pt;
+
+}
+
+
+@keyframes blue{
+  0% {color: #0000ff;}
+  30% {color: #0000ff;}
+  60% {color: white;}
+  100% {color: #0000ff;}
+}
+
+.cantieriAperti{
+  animation-name: blue;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 .border{
@@ -123,19 +175,29 @@ body{
   position: absolute;
   text-align: center;
   top: 50%;
-  left: 75%;
+  left: 150%;
   transform: translate(-50%, -50%);
+  width: 100%;
 
 }
 
 .schede{
   line-height: 20pt;
   border-bottom: 1px solid black;
+  height: 100%;
+
 }
+
+.folder{
+    overflow: scroll;
+    height: 100%;
+}
+
 
 .scheda{
   width: 100%;
   border-top: 1px solid black;
+
 }
 
 .scheda_click{
@@ -230,7 +292,7 @@ body{
 }
 
 .blue{
- color: #1C63A3;
+ color: #0000ff;
 }
 
 .legal-info{
@@ -260,14 +322,20 @@ body{
 }
 
 #archivio-cont{
-  float: left;
+  position: absolute;
+  left: 0;
+  top: 0;
   display: none;
   border-right: 1px solid black;
-  overflow: scroll;
+
+
+
 }
 
 #studio-cont{
-  float: right;
+  position: absolute;
+  right: 0;
+  top: 0;
   display: none;
   overflow: scroll;
 }
@@ -384,20 +452,20 @@ body{
 
   .menu-archivio > div{
     border-top: 1px solid black;
-    padding-top: 5px;
+    /* padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
-    padding-right: 15px;
+    padding-right: 15px; */
   }
 
   .schede{
     width: 100vw;
   }
 
-  .scheda{
+  /* .scheda{
     padding-top: 5px;
     padding-bottom: 5px;
-  }
+  } */
 
 
   .indice{
@@ -407,15 +475,15 @@ body{
 
 
   .arrow{
-    float: left;
+    position: absolute;
+    /* float: left; */
     left: 15px;
     z-index: 1000;
-    padding-top: 6px;
-    transform: translate(15px, 0);
+    /* transform: translate(15px, 0); */
   }
 
   .line-height-more{
-    line-height: 20pt;
+    line-height: 30pt;
   }
 
   .cont{
@@ -423,6 +491,10 @@ body{
   }
 
 
+  .inCorso{
+    font-size: 24px;
+    line-height: 28px;
+  }
 
 
 
