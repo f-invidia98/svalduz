@@ -291,7 +291,7 @@ function getLink(anno, num, id) {
 
 
   archiv();
-  $(".scheda").css("height", "calc(100vh - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
+  $(".schede").css("height", "calc(100vh - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px )")
 
 
 
@@ -303,7 +303,7 @@ function getLink(anno, num, id) {
 
   $(".scheda_hide").addClass("hide")
 
-
+  $(".scheda_click").removeClass("blue")
 
 
 
