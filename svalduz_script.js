@@ -122,6 +122,7 @@ $(".scheda_click").click(function() {
 
     $(".testo_scheda").css("padding-bottom", "20px");
     $(".schede").css("border-bottom", "none");
+
   }
   else {
 
@@ -184,7 +185,8 @@ $(window).resize(function() {
     $(".arrow").addClass("hide")
     $(".inCorso").addClass("hide")
     $(".hide_big").addClass("hide")
-
+    $("html").scrollTop("0")
+    $("html").css("overflow", "hidden")
   }
   else if ($(window).width() < 549) {
     // $(".menu-archivio > div").addClass("hide")
@@ -291,7 +293,7 @@ function getLink(anno, num, id) {
 
 
   archiv();
-  $(".schede").css("height", "calc(100vh - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px )")
+
 
 
 
@@ -314,6 +316,7 @@ function getLink(anno, num, id) {
     $(".arrow").addClass("hide")
       $(".beneath").css("display", "block")
 
+      $(".schede").css("height", "calc(" + $("#archivio-cont").height() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".normal").outerHeight() + "px)")
     if (id == "Now") {
       $(".indice.normal").addClass("hide")
       $(".indice.cantieriAperti").removeClass("hide")

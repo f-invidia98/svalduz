@@ -13,6 +13,7 @@
 
 html {
     height: 100%;
+    overflow: hidden;
 }
 
 
@@ -25,6 +26,50 @@ html {
   font-size: 12pt;
 }
 
+
+
+.landingPage{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background: white;
+  transition: 1s;
+}
+
+.landing_dis{
+  opacity: 0;
+  display: none;
+}
+
+.landingPage > div{
+    position: absolute;
+  height: 100%;
+  width: 50%;
+  top: 0;
+line-height: 100vh;
+padding: 3px;
+transition: 0.4s;
+}
+
+.studio_landing{
+text-align: right;
+left: 0;
+}
+
+.studio_dis{
+  left: -100px;
+  opacity: 0;
+}
+
+.svalduz_landing{
+  text-align: left;
+  right: 0;
+}
+
+.svladuz_dis{
+  right: -100px;
+  opacity: 0;
+}
 
 
 /* ::-webkit-scrollbar {
@@ -51,6 +96,15 @@ html {
 
 } */
 
+#mNow{
+
+}
+
+.border_bottom{
+  border-bottom: none;
+  width: 100%;
+}
+
 
 
 *::-webkit-scrollbar {
@@ -76,21 +130,20 @@ body{
   width: 100vw;
   height: 100vh;
     line-height: 16pt;
-    overflow: hidden;
+
 
 }
 
 
 @keyframes blue{
   0% {color: #0000ff;}
-  30% {color: #0000ff;}
-  60% {color: white;}
+  50% {color: white;}
   100% {color: #0000ff;}
 }
 
 .blu_flash{
   animation-name: blue;
-  animation-duration: 5s;
+  animation-duration: 3s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
@@ -121,6 +174,7 @@ body{
   text-align: center;
   position: relative;
       z-index: 15;
+      border-bottom: 1px solid black;
 
 }
 
@@ -160,6 +214,12 @@ body{
   display: none;
 }
 
+.scheda_hide{
+  overflow: hidden;
+  /* height: 0px; */
+  transition: 0.2s;
+}
+
 .window{
   display: inline-block;
   width: 50%;
@@ -173,6 +233,8 @@ body{
   text-align: center;
 
 }
+
+
 
 
 
@@ -219,7 +281,6 @@ body{
 
 .scheda{
   width: 100%;
-  border-top: 1px solid black;
 
 }
 
@@ -246,7 +307,7 @@ body{
   width: 100%;
   z-index: 5;
   background-color: white;
-  transition: 0.2s;
+  transition: 0.4s;
   transform: translate(0, -100%);
 }
 
@@ -273,7 +334,7 @@ body{
 }
 
 .nome{
-  width: 45%;
+  /* width: 20%; */
   display: inline-block;
 }
 
@@ -304,6 +365,7 @@ body{
   position: absolute;
 top: 0;
 padding-top: 1px;
+padding-bottom: 30px;
   overflow: hidden;
   height: 100vh;
   width: auto;
@@ -410,6 +472,7 @@ height: 100vh;
 
 
 
+
 .content.inCorso{
   width: 100%;
   font-size: 40pt;
@@ -462,6 +525,12 @@ height: 100vh;
 
 
 @media only screen and (max-width: 550px) {
+
+  .beneath{
+    display: none;
+  }
+
+
 
   .window{
     /* padding-left: 10px;
@@ -518,7 +587,7 @@ height: 100vh;
   }
 
   .menu-archivio > div{
-    border-top: 1px solid black;
+    /* border-top: 1px solid black; */
     /* padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
@@ -562,8 +631,23 @@ height: 100vh;
   .inCorso{
     font-size: 24px;
     line-height: 28px;
+
   }
 
+  #mNow{
+    border-top: 1px solid black;
+  }
+
+
+  .border{
+    border-bottom: none;
+    width: 100%;
+  }
+
+  .border_bottom{
+    border-bottom: 1px solid black;
+    width: 100%;
+  }
 
 
 }
