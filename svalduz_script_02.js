@@ -230,7 +230,7 @@ function gen_0() {
   $("#archivio-menu").css("display", "inline-block")
   $("#studio-menu").css("display", "inline-block")
   $(".pos").css("line-height", "100vh")
-  $(".pos").css("line-height", "calc(var(--vh, 1vh) * 100)")
+  // $(".pos").css("line-height", "calc(var(--vh, 1vh) * 100)")
   $(".pos").removeClass("padding_top")
   $("#studio-cont").css("display", "none")
   $(".studio-hide").css("display", "none")
