@@ -273,6 +273,14 @@ function remove_scheda_from_url() {
 $(window).resize(function() {
   if (gen != '0') {
     gen_func()
+    if (open == true) {
+      $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").height() + "px - " + $(".normal").outerHeight() + "px)")
+
+      $("#" + scheda).children(".scheda_hide").css("height","")
+      console.log("ei")
+    }else {
+
+    }
   }
 
 })
@@ -350,7 +358,7 @@ function scheda_func(scheda){
       $(document).ready(function() {
         $(document).mousemove(function() {
           if ($(".nome:hover").length != 0) {
-            $("#" + scheda + " > .scheda_click .nome").css('cursor', 'pointer');
+            $("#" + scheda + " .nome").css('cursor', 'pointer');
           }
         });
       });
@@ -630,14 +638,17 @@ function enterFullscreen() {
     $(window).resize(function() {
 
       $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
+
       if ($(".immagine_big").width()  >= $(window).width() ) {
           $(".immagine_big").css("width", $(window).width() - 60)
           $(".immagine_big").css("height", "auto")
       }else{
-        $(".immagine_big").css("height", "calc(var(--vh, 1vh) * 100 - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
+        $(".immagine_big").css("height", "100vh - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
         $(".immagine_big").css("width", "auto")
       }
     })
+
+
 
     window.dispatchEvent(new Event('resize'));
 

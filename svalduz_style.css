@@ -11,6 +11,10 @@
 }
 
 
+.border_bottom_gen{
+  border-bottom: 1px solid black;
+}
+
 .black{
   color:black;
 }
@@ -181,7 +185,7 @@ body{
   text-align: center;
   position: relative;
       z-index: 15;
-      border-bottom: 1px solid black;
+      /* border-bottom: 1px solid black; */
 
 }
 
