@@ -146,6 +146,7 @@ $(".scheda_click").click(function() {
 
 
 
+
 });
 
 
@@ -366,8 +367,10 @@ function gen_func() {
   $("#a" + gen).css("display", "block");
   $(".menu-archivio > div").removeClass("blue");
   $("#m" + gen).addClass("blue");
-  $(".schede").css("height", "calc(" + $("#archivio-cont").height() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".normal").outerHeight() + "px)")
-
+  $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").height() + "px - " + $(".normal").outerHeight() + "px)")
+  console.log($("#archivio-cont").outerHeight())
+    console.log($(".archivio-text").outerHeight())
+      console.log($(".normal").outerHeight())
 
 
   if ($(window).width() >= 550) {
