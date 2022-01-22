@@ -16,9 +16,7 @@
 }
 
 html {
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
-
+    height: 100%;
     overflow: hidden;
 }
 
@@ -36,7 +34,7 @@ html {
 
 .landingPage{
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   position: absolute;
   background: white;
   transition: 1s;
@@ -134,7 +132,7 @@ a{
 
 body{
   width: 100vw;
-  height: 100%;
+  height: 100vh;
     line-height: 16pt;
 
 
@@ -229,7 +227,7 @@ body{
 .window{
   display: inline-block;
   width: 50%;
-  height: 100%;
+  height: 100vh;
   transition: 0.1s;
 }
 
@@ -459,7 +457,7 @@ padding-bottom: 30px;
   top: 0;
   display: none;
   border-right: 1px solid black;
-  height: 100%;
+height: 100vh;
 
 
 
@@ -472,7 +470,7 @@ padding-bottom: 30px;
   top: 0;
   display: none;
   overflow: scroll;
-    height: 100%;
+    height: 100vh;
 }
 
 
@@ -548,7 +546,7 @@ padding-bottom: 30px;
   html{
     height: 100vh; /* Fallback for browsers that do not support Custom Properties */
     height: calc(var(--vh, 1vh) * 100);
-    overflow: hidden;
+    overflow: visible;
   }
 
   .beneath{
