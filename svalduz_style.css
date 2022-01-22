@@ -35,7 +35,6 @@ html {
 .landingPage{
   width: 100vw;
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
   position: absolute;
   background: white;
   transition: 1s;
@@ -52,7 +51,6 @@ html {
   width: 50%;
   top: 0;
 line-height: 100vh;
-line-height: calc(var(--vh, 1vh) * 100);
 padding: 3px;
 transition: 0.4s;
 }
