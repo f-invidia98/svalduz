@@ -227,6 +227,7 @@ function gen_0() {
   $(".menu-archivio > div").removeClass("hide")
   $(".arrow").addClass("hide")
   $(".hide_small").addClass("hide")
+  $(".menu-archivio > div > .sortbtn").addClass("hide")
 }
 
 
@@ -297,15 +298,35 @@ function scheda_func(scheda){
 
 
     setTimeout(function(){
-      height = $("#" + scheda).children(".scheda_hide").height();
-      $("#" + scheda).children(".scheda_hide").css("height","0px")
 
-      $(".scheda_hide").addClass("hide")
-      $("#" + scheda).children(".scheda_hide").removeClass("hide")
+//         $("#" + scheda).css({
+//     position: "absolute",
+//     visibility: "hidden",
+//     display: "block"
+//     })
+// height = $("#" + scheda).children(".scheda_hide").height();
+//
+//       $("#" + scheda).css({
+//         position: "",
+//         visibility: "",
+//         display: ""
+//     })
 
-      $("#" + scheda).children(".scheda_hide").css("height",height)
 
-      $("#" + scheda + " > .scheda_click").addClass("blue")
+      // setTimeout(function(){
+      //
+      //
+      // },300)
+
+        $("#" + scheda).children(".scheda_hide").removeClass("hide")
+        height = $("#" + scheda).find(".scheda_hide").outerHeight();
+        $("#" + scheda).children(".scheda_hide").css("height","0px")
+        $(".scheda_hide").addClass("hide")
+        $("#" + scheda).children(".scheda_hide").removeClass("hide")
+        $("#" + scheda).children(".scheda_hide").css("height",height)
+        $("#" + scheda + " > .scheda_click").addClass("blue")
+
+
 
       open = true;
 
@@ -356,7 +377,7 @@ function gen_func() {
     $(".inCorso").addClass("hide")
     $(".hide_big").addClass("hide")
     $(".indice_right").addClass("hide")
-
+    $(".indice > .center > .sortbtn").removeClass("hide")
     $(".arrow").addClass("hide")
 
 
@@ -389,7 +410,7 @@ function gen_func() {
       $(".hide_small").removeClass("hide")
     }
 
-
+    $("#m" + gen + " > .sortbtn").removeClass("hide")
   }
 
 
@@ -408,6 +429,7 @@ function archiv() {
   $(".pos").css("line-height", "16pt")
   $(".pos").addClass("padding_top")
   $("#studio-menu").css("display", "none")
+
 
 
 };
@@ -673,35 +695,44 @@ $(".legal-info").click(function() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//
-//
+
+
 // sort_by_num();
-//
-// $(".alpha").click(function(){
-//   sort_by_name()
-// })
-//
-// $(".num").click(function(){
-//   sort_by_num()
-// })
-//
-//
-// function sort_by_name(){
-//   $('.sortme').sort(function(a, b) {
-//   return $(a).find("nome").text() > $(b).find("nome").text() ? 1: -1;
-//   }).appendTo('.schede');
-// }
-//
-// function sort_by_num(){
-//   $('.sortme').sort(function(a, b) {
-//   return $(a).find("numero").innerText > $(b).find("numero").innerText ? 1: -1;
-//   }).appendTo('.schede');
-// }
-//
-//
-//
-//
-//
+
+$(".alpha").click(function(){
+  sort_by_name();
+    $(".alpha").removeClass("opacity")
+  $(".num").addClass("opacity")
+
+
+})
+
+$(".num").click(function(){
+  sort_by_num()
+    $(".num").removeClass("opacity")
+  $(".alpha").addClass("opacity")
+
+})
+
+
+function sort_by_name(){
+  var sortbyname = $("#a" + gen + "> .sortme").sort(function(a, b) {
+  return $(a).find(".nome").text() > $(b).find(".nome").text() ? 1: -1;
+});
+  $("#a" + gen).html(sortbyname)
+}
+
+function sort_by_num(){
+  var sortbynum = $("#a" + gen + "> .sortme").sort(function(a, b) {
+  return $(a).find(".numero").text() > $(b).find(".numero").text() ? 1: -1;
+  });
+  $("#a" + gen).html(sortbynum)
+}
+
+
+
+
+
 
 
 

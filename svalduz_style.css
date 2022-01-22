@@ -11,6 +11,10 @@
 }
 
 
+.black{
+  color:black;
+}
+
 html {
     height: 100%;
     overflow: hidden;
@@ -143,7 +147,7 @@ body{
 
 .blu_flash{
   animation-name: blue;
-  animation-duration: 3s;
+  animation-duration: 2s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
@@ -189,8 +193,8 @@ body{
 .indice_right{
   display: inline-block;
   position: absolute;
-  right: 40px;
-    z-index: 2;
+  right: 30px;
+  z-index: 2;
 }
 
 .red{
@@ -506,6 +510,13 @@ height: 100vh;
     padding-right: 30px;
   }
 
+
+  .indice_right{
+
+    right: 30px;
+
+  }
+
 }
 
 @media only screen and (max-width: 700px) {
@@ -514,12 +525,18 @@ height: 100vh;
   }
 
   .padding_LR{
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   .padding_top{
     padding-top: 45px;
+  }
+
+  .indice_right{
+
+    right: 30px;
+
   }
 }
 
@@ -560,6 +577,12 @@ height: 100vh;
   .padding_LR{
     padding-left: 15px;
     padding-right: 15px;
+  }
+
+  .indice_right{
+
+    right: 15px;
+
   }
 
   .w_b{
@@ -635,7 +658,7 @@ height: 100vh;
   }
 
   #mNow{
-    border-top: 1px solid black;
+    /* border-top: 1px solid black; */
   }
 
 
