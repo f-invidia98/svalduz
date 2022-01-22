@@ -634,7 +634,7 @@ function enterFullscreen() {
           $(".immagine_big").css("width", $(window).width() - 60)
           $(".immagine_big").css("height", "auto")
       }else{
-        $(".immagine_big").css("height", "calc(100vh - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
+        $(".immagine_big").css("height", "calc(var(--vh, 1vh) * 100 - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
         $(".immagine_big").css("width", "auto")
       }
     })
