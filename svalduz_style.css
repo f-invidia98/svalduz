@@ -35,6 +35,7 @@ html {
 .landingPage{
   width: 100vw;
   height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
   position: absolute;
   background: white;
   transition: 1s;
@@ -51,6 +52,7 @@ html {
   width: 50%;
   top: 0;
 line-height: 100vh;
+    line-height: calc(var(--vh, 1vh) * 100);
 padding: 3px;
 transition: 0.4s;
 }
@@ -133,6 +135,7 @@ a{
 body{
   width: 100vw;
   height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
     line-height: 16pt;
 
 
@@ -228,12 +231,14 @@ body{
   display: inline-block;
   width: 50%;
   height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
   transition: 0.1s;
 }
 
 .pos{
   padding-top: auto;
   line-height: 100vh;
+      line-height: calc(var(--vh, 1vh) * 100);
   text-align: center;
 
 }
@@ -372,6 +377,7 @@ padding-top: 1px;
 padding-bottom: 30px;
   overflow: hidden;
   height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
   width: auto;
   z-index: 30;
 
@@ -383,6 +389,7 @@ padding-bottom: 30px;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
   opacity: 0.8;
   z-index: 10;
   background-color: white ;
@@ -458,6 +465,7 @@ padding-bottom: 30px;
   display: none;
   border-right: 1px solid black;
 height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
 
 
 
@@ -471,6 +479,7 @@ height: 100vh;
   display: none;
   overflow: scroll;
     height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
 }
 
 
