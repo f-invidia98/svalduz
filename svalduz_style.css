@@ -36,7 +36,7 @@ html {
 
 .landingPage{
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   background: white;
   transition: 1s;
@@ -134,7 +134,7 @@ a{
 
 body{
   width: 100vw;
-  height: 100vh;
+  height: 100%;
     line-height: 16pt;
 
 
@@ -229,7 +229,7 @@ body{
 .window{
   display: inline-block;
   width: 50%;
-  height: 100vh;
+  height: 100%;
   transition: 0.1s;
 }
 
@@ -459,7 +459,7 @@ padding-bottom: 30px;
   top: 0;
   display: none;
   border-right: 1px solid black;
-height: 100vh;
+  height: 100%;
 
 
 
@@ -472,7 +472,7 @@ height: 100vh;
   top: 0;
   display: none;
   overflow: scroll;
-    height: 100vh;
+    height: 100%;
 }
 
 
