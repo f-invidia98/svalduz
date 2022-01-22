@@ -21,6 +21,9 @@ window.addEventListener('resize', () => {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
 
+
+
+
 $(window).on('popstate', function(event) {
  if (state.scheda == '0') {
    remove_hash_from_url();
