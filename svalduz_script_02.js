@@ -120,7 +120,7 @@ $("#archivio-toggle").click(function() {
 $(".menu-archivio > div").click(function() {
 
   stato_verifier();
-  scheda_func();
+  // scheda_func();
   remove_scheda_from_url()
 
 
@@ -384,9 +384,6 @@ function gen_func() {
   $(".menu-archivio > div").removeClass("blue");
   $("#m" + gen).addClass("blue");
   $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").height() + "px - " + $(".normal").outerHeight() + "px)")
-  console.log($("#archivio-cont").outerHeight())
-    console.log($(".archivio-text").outerHeight())
-      console.log($(".normal").outerHeight())
 
 
   if ($(window).width() >= 550) {
