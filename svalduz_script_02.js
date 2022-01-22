@@ -448,6 +448,8 @@ function archiv() {
   $(".pos").css("line-height", "16pt")
   $(".pos").addClass("padding_top")
   $("#studio-menu").css("display", "none")
+  $("#studio-cont").css("display", "none")
+  $(".studio-hide").css("display", "none")
 
 
 
