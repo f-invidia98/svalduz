@@ -49,10 +49,10 @@ html {
 .landingPage > div{
     position: absolute;
   height: 100%;
-  /* height: calc(var(--vh, 1vh) * 100); */
   width: 50%;
   top: 0;
 line-height: 100vh;
+line-height: calc(var(--vh, 1vh) * 100);
 padding: 3px;
 transition: 0.4s;
 }
