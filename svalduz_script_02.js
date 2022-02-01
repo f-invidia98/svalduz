@@ -30,16 +30,14 @@ $(window).on('popstate', function(event) {
    stato_verifier();
    gen_0();
  } else {
-
-
-
    stato_verifier();
-   scheda_func();
+   // scheda_func();
    remove_scheda_from_url()
-
-
    open = false;
  }
+ // console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+ //
+ // history.back();
 });
 
 
@@ -190,7 +188,7 @@ function stato_verifier() {
 
       url = new URL(window.location);
       url.searchParams.set('gen', state.gen);
-      window.history.pushState({}, 'prova', url);
+      window.history.pushState({page: 1}, 'gen', url);
       gen_func();
 
 
@@ -198,6 +196,7 @@ function stato_verifier() {
 
 
         remove_scheda_from_url()
+
 
 
       }else {
@@ -211,7 +210,7 @@ function stato_verifier() {
 
         url = new URL(window.location);
         url.searchParams.set('scheda', state.scheda);
-        window.history.pushState({}, 'prova2', url);
+        window.history.pushState({page: 2}, 'page2', url);
 
       }
 
@@ -268,14 +267,15 @@ function remove_scheda_from_url() {
 }
 
 
-
+var resizeId;
 
 $(window).resize(function() {
+  clearTimeout(resizeId);
+  resizeId = setTimeout(gen_func, 500);
+
   if (gen != '0') {
     gen_func()
     if (open == true) {
-      $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").height() + "px - " + $(".normal").outerHeight() + "px)")
-
       $("#" + scheda).children(".scheda_hide").css("height","")
       console.log("ei")
     }else {
@@ -388,14 +388,14 @@ function gen_func() {
   archiv();
 
   $(".schede").css("display", "none");
+
+
   $("#a" + gen).css("display", "block");
   $(".menu-archivio > div").removeClass("blue");
   $("#m" + gen).addClass("blue");
-  $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").height() + "px - " + $(".normal").outerHeight() + "px)")
 
 
   if ($(window).width() >= 550) {
-
     $(".menu-archivio > div").removeClass("hide")
     $(".arrow").addClass("hide")
     $(".inCorso").addClass("hide")
@@ -408,16 +408,18 @@ function gen_func() {
     if (gen == "Now") {
       $(".indice.normal").addClass("hide")
       $(".indice.cantieriAperti").removeClass("hide")
+      $(".indice .indice_right.blu_flash").removeClass("hide")
     }
     else {
       $(".indice.normal").removeClass("hide")
       $(".indice.cantieriAperti").addClass("hide")
+      $(".indice .indice_right.blu_flash").addClass("hide")
     }
+    $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
 
 
   }
   else if ($(window).width() < 550) {
-
 
     $(".indice").addClass("hide")
     $(".menu-archivio > div").addClass("hide")
@@ -435,6 +437,9 @@ function gen_func() {
     }
 
     $("#m" + gen + " > .sortbtn").removeClass("hide")
+
+    $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".menu-archivio").outerHeight() + "px)")
+
   }
 
 
@@ -623,39 +628,58 @@ $(".red").click(function() {
 })
 
 function enterFullscreen() {
+
   if ($(".fullscreen").hasClass("hide")) {
     $(".fullscreen").removeClass("hide")
     temp_text = $(".normal > .indice_center").html();
     $(".normal > .indice_center").html($(this).parentsUntil("scheda").find(".nome").html() + " ↓")
     $(".red").removeClass("hide")
+    $(".sortbtn").addClass("hide_S")
+
 
   }
 
-  if (!$(".immagine").hasClass("immagine_big")) {
-    $(".immagine").addClass("immagine_big")
 
+  if (!$(".immagine").hasClass("immagine_big")) {
+    // fullScreenResize();
+
+    $(".immagine_big").css("width", "auto")
+    $(".immagine").addClass("immagine_big")
+    $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
+
+    $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
+
+    var resizeId;
 
     $(window).resize(function() {
+      clearTimeout(resizeId);
+      resizeId = setTimeout(fullScreenResize, 500);
 
-      $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
-
-      if ($(".immagine_big").width()  >= $(window).width() ) {
-          $(".immagine_big").css("width", $(window).width() - 60)
-          $(".immagine_big").css("height", "auto")
-      }else{
-        $(".immagine_big").css("height", "100vh - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
-        $(".immagine_big").css("width", "auto")
-      }
     })
 
 
 
-    window.dispatchEvent(new Event('resize'));
+
+
+
+
 
 
   }
 }
 
+
+function fullScreenResize() {
+  $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
+
+    if ($(window).width() <= $(".immagine_big").width() + 60) {
+        $(".immagine_big").css("width", $(window).width() - 60)
+        $(".immagine_big").css("height", "auto")
+    }else{
+      $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
+        $(".immagine_big").css("width", "auto")
+    }
+  }
 
 function exitFullscreen() {
   if (!$(".fullscreen").hasClass("hide")) {
@@ -666,6 +690,7 @@ function exitFullscreen() {
     $(".immagine").css("height", "")
     $(".immagine").css("width", "")
     $(".immagine").css("top", "")
+    $(".sortbtn").removeClass("hide_S")
   }
 }
 
@@ -762,9 +787,11 @@ function sort_by_num(){
 
 
 
+// window.dispatchEvent(new Event('resize'));
 
 
-
+//
+// window.dispatchEvent(new Event('resize'));
 
 
 // state = { 'page_id': 1, 'user_id': 5 }

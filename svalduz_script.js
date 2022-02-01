@@ -316,7 +316,6 @@ function getLink(anno, num, id) {
     $(".arrow").addClass("hide")
       $(".beneath").css("display", "block")
 
-      $(".schede").css("height", "calc(" + $("#archivio-cont").height() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".normal").outerHeight() + "px)")
     if (id == "Now") {
       $(".indice.normal").addClass("hide")
       $(".indice.cantieriAperti").removeClass("hide")

@@ -126,6 +126,9 @@ left: 0;
   scrollbar-width: none;
 }
 
+.hide_S{
+  visibility: hidden;
+}
 
 
 
@@ -202,6 +205,10 @@ body{
   position: absolute;
   right: 30px;
   z-index: 2;
+}
+
+.sortbtn{
+  cursor: pointer;
 }
 
 .red{
@@ -650,6 +657,7 @@ height: 100vh;
     display: none;
 
   }
+
 
 
 
