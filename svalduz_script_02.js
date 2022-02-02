@@ -285,19 +285,22 @@ $(window).resize(function() {
 
 })
 
-
-
-function scheda_func(scheda){
-
-
-
+function mousehoverimg(){
   $(document).ready(function() {
     $(document).mousemove(function() {
-      if ($(".nome:hover").length != 0) {
+      if ($(".nome:hover").length != 0 && gen != "Now") {
         $(".nome").css('cursor', 'url("Assets/Sfondo.png"), auto');
       }
     });
 });
+}
+
+mousehoverimg()
+
+function scheda_func(scheda){
+
+
+mousehoverimg()
 
 
   if (open == true) {
@@ -757,6 +760,21 @@ $(".alpha").click(function(){
   sort_by_name();
     $(".alpha").removeClass("opacity")
   $(".num").addClass("opacity")
+    // $(".scheda_click").trigger('click');
+    $(".scheda_click").click(function() {
+
+      if (open==true && $(this).parent().attr("id") != scheda) {
+        stato_verifier();
+      }
+
+      state.scheda = $(this).parent().attr("id");
+      stato_verifier();
+
+
+
+
+    });
+
 
 
 })
@@ -765,6 +783,21 @@ $(".num").click(function(){
   sort_by_num()
     $(".num").removeClass("opacity")
   $(".alpha").addClass("opacity")
+  // $(".scheda_click").trigger('click');
+  $(".scheda_click").click(function() {
+
+    if (open==true && $(this).parent().attr("id") != scheda) {
+      stato_verifier();
+    }
+
+    state.scheda = $(this).parent().attr("id");
+    stato_verifier();
+
+
+
+
+  });
+
 
 })
 
