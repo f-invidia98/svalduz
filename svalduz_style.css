@@ -10,6 +10,11 @@
   font-weight: 200;
 }
 
+.underline{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 
 .border_bottom_gen{
   border-bottom: 1px solid black;
