@@ -742,13 +742,23 @@ function exitFullscreen() {
 $(".legal-toggle").click(function() {
   $(".studio-info").css("display", "none")
   $(".legal-info").css("display", "inline-block")
+  $(".indietro").addClass("hide")
+  $(".indietro_2").removeClass("hide")
 })
 
 $(".legal-info").click(function() {
   $(".studio-info").css("display", "inline-block")
   $(".legal-info").css("display", "none")
+  $(".indietro").removeClass("hide")
+  $(".indietro_2").addClass("hide")
 })
 
+
+  $(".indietro_2").click(function(){
+    $(document).ready(function(){
+    $(".legal-info").trigger("click");
+});
+  })
 
 
 
