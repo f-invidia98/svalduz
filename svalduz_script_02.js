@@ -116,6 +116,7 @@ $("#archivio-toggle").click(function() {
 
 
 $(".menu-archivio > div").click(function() {
+    scroll_elements()
 
   stato_verifier();
   // scheda_func();
@@ -150,9 +151,12 @@ $(".arrow").click(function() {
 
 $(".scheda_click").click(function() {
 
+
+
   if (open==true && $(this).parent().attr("id") != scheda) {
     stato_verifier();
   }
+
 
   state.scheda = $(this).parent().attr("id");
   stato_verifier();
@@ -225,15 +229,30 @@ function stato_verifier() {
 
 }
 
+function scroll_elements(){
+  var studioscroll = document.getElementById("studio-cont");
+  studioscroll.scrollTop = 0;
+  var schedescroll_1 = document.getElementById("aNow");
+  schedescroll_1.scrollTop = 0;
+  var schedescroll_2 = document.getElementById("a60-89");
+  schedescroll_2.scrollTop = 0;
+  // var schedescroll_3 = document.getElementById("a89-19");
+  // schedescroll_3.scrollTop = 0;
+  // var schedescroll_4 = document.getElementById("a20");
+  // schedescroll_4.scrollTop = 0;
+}
+
 
 function gen_0() {
+
+
+  scroll_elements()
   $("#archivio-menu").css("display", "inline-block")
   $("#studio-menu").css("display", "inline-block")
   $(".pos").css("line-height", "100vh")
   $(".pos").css("line-height", "calc(var(--vh, 1vh) * 100)")
   $(".pos").removeClass("padding_top")
-  var studioscroll = document.getElementById("studio-cont");
-  studioscroll.scrollTop = 0;
+
   $("#studio-cont").css("display", "none")
 
   $(".studio-hide").css("display", "none")
@@ -241,8 +260,7 @@ function gen_0() {
   $(".archivio-hide").css("display", "none")
   $(".menu-archivio").css("display", "none")
   remove_hash_from_url()
-  var schedescroll = document.getElementsByClassName("schede");
-  schedescroll.scrollTop = 0;
+
   $(".schede").css("display", "none")
 
   $(".scheda_hide").addClass("hide")
@@ -263,6 +281,7 @@ function remove_hash_from_url() {
   url = window.location.href
   url = url.split('?')[0]
   window.history.pushState({}, '0', url);
+
 }
 
 function remove_scheda_from_url() {
