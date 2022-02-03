@@ -175,6 +175,7 @@ function stato_verifier() {
 
   if (state.gen == "0") {
     gen_0()
+
   }
   else if (state.gen != "0") {
 
@@ -205,12 +206,12 @@ function stato_verifier() {
 
 
 
-
         scheda_func(scheda);
 
         url = new URL(window.location);
         url.searchParams.set('scheda', state.scheda);
         window.history.pushState({page: 2}, 'page2', url);
+
 
       }
 
@@ -231,19 +232,26 @@ function gen_0() {
   $(".pos").css("line-height", "100vh")
   $(".pos").css("line-height", "calc(var(--vh, 1vh) * 100)")
   $(".pos").removeClass("padding_top")
+  var studioscroll = document.getElementById("studio-cont");
+  studioscroll.scrollTop = 0;
   $("#studio-cont").css("display", "none")
+
   $(".studio-hide").css("display", "none")
   $("#archivio-cont").css("display", "none")
   $(".archivio-hide").css("display", "none")
   $(".menu-archivio").css("display", "none")
   remove_hash_from_url()
+  var schedescroll = document.getElementsByClassName("schede");
+  schedescroll.scrollTop = 0;
   $(".schede").css("display", "none")
+
   $(".scheda_hide").addClass("hide")
   $(".menu-archivio > div").removeClass("blue")
   $(".menu-archivio > div").removeClass("hide")
   $(".arrow").addClass("hide")
   $(".hide_small").addClass("hide")
   $(".menu-archivio > div > .sortbtn").addClass("hide")
+
 }
 
 
@@ -418,6 +426,7 @@ function gen_func() {
       $(".indice.cantieriAperti").addClass("hide")
       $(".indice .indice_right.blu_flash").addClass("hide")
     }
+      txt();
     $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
 
 
@@ -464,6 +473,7 @@ function archiv() {
   $("#studio-cont").css("display", "none")
   $(".studio-hide").css("display", "none")
 
+ txt();
 
 
 };
@@ -817,6 +827,25 @@ function sort_by_num(){
 }
 
 
+
+function txt(){
+  if (gen=="0" && $(window).width() < 550) {
+    $(".archivio-text > span").addClass("hide")
+    $(".txt_gen").removeClass("hide")
+  } else if (gen=="Now") {
+    $(".archivio-text > span").addClass("hide")
+    $(".txt_incorso").removeClass("hide")
+  } else if (gen=='60-89') {
+    $(".archivio-text > span").addClass("hide")
+    $(".txt_1").removeClass("hide")
+  } else if (gen=='89-19') {
+    $(".archivio-text > span").addClass("hide")
+    $(".txt_2").removeClass("hide")
+  } else if (gen=='20') {
+    $(".archivio-text > span").addClass("hide")
+    $(".txt_3").removeClass("hide")
+  }
+}
 
 
 
