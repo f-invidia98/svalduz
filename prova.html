@@ -113,7 +113,7 @@ function init()
     var MAG_ANGLE = 30;
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
 	scene.add(camera);
-	camera.position.set(0,50,150);
+	camera.position.set(15,15,15);
 	camera.lookAt(scene.position);
 
     renderer = new THREE.WebGLRenderer( {antialias:true} );
@@ -168,56 +168,86 @@ function onDocumentMouseMove( event ) {
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     raycaster.setFromCamera( mouse.clone(), camera );
+    // var ico = scene;
+    // var objects = raycaster.intersectObjects(ico.children);
+    // var o = [];
+    // if (objects.length>0) {
+    //     for (var i in objects) {
+    //        if (objects[i].object.userData.verticeIndex) {
+    //             o.push(objects[i].object.userData.verticeIndex);
+    //        }
+    //     }
+    //     o = o.length>0 ? o[0] : -1;
+    // } else {
+    //     o = -1;
+    // }
+    // activeCell = (o>=0) ? true : false;
 
-    var objects = raycaster.intersectObjects(ico.children);
-    var o = [];
-    if (objects.length>0) {
-        for (var i in objects) {
-           if (objects[i].object.userData.verticeIndex) {
-                o.push(objects[i].object.userData.verticeIndex);
-           }
-        }
-        o = o.length>0 ? o[0] : -1;
-    } else {
-        o = -1;
-    }
-    activeCell = (o>=0) ? true : false;
-
-    if (!mousePressed) {
-        for(var i in ico.children) {
-            if (ico.children[i].userData.behav==='cell') {
-                if (ico.children[i].userData.verticeIndex===o) {
-                    ico.children[i].material.color.setHex(0x78F9F6);
-                    ico.children[i].scale.set(2,2,2);
-                } else {
-                    ico.children[i].material.color.setHex(0xFF1111);
-                    ico.children[i].scale.set(1,1,1);
-                }
-            }
-            if (ico.children[i].userData.behav==='wireframe') {
-                if (ico.children[i].userData.verticeIndex===o) {
-                    ico.children[i].material.opacity = 0.4;
-                } else {
-                    ico.children[i].material.opacity = 0.1;
-                }
-            }
-        }
-    }
+    // if (!mousePressed) {
+    //     for(var i in ico.children) {
+    //         if (ico.children[i].userData.behav==='cell') {
+    //             if (ico.children[i].userData.verticeIndex===o) {
+    //                 ico.children[i].material.color.setHex(0x78F9F6);
+    //                 ico.children[i].scale.set(2,2,2);
+    //             } else {
+    //                 ico.children[i].material.color.setHex(0xFF1111);
+    //                 ico.children[i].scale.set(1,1,1);
+    //             }
+    //         }
+    //         if (ico.children[i].userData.behav==='wireframe') {
+    //             if (ico.children[i].userData.verticeIndex===o) {
+    //                 ico.children[i].material.opacity = 0.4;
+    //             } else {
+    //                 ico.children[i].material.opacity = 0.1;
+    //             }
+    //         }
+    //     }
+    // }
 }
+
+
+
+
+
+
+
+
 
 function animate()
 {
     requestAnimationFrame( animate );
     syncframe++;
-	render();
+	  render();
 
 }
 
 
 function render()
 {
+     renderer.setClearColor( 0xffffff, 0);
      renderer.render(scene, camera);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         </script>

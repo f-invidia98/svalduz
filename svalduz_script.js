@@ -1,3 +1,153 @@
+
+var container, scene, camera, renderer, controls;
+var projector, INTERSECTED;
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+var ico;
+var mousePressed = false;
+var activeCell = false;
+var syncframe = 0;
+
+init();
+animate();
+
+function init()
+{
+
+	scene = new THREE.Scene();
+
+	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
+    var MAG_ANGLE = 30;
+	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+	scene.add(camera);
+	camera.position.set(0,50,150);
+	camera.lookAt(scene.position);
+
+    renderer = new THREE.WebGLRenderer( {antialias:true} );
+	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	container = document.getElementById( 'ThreeJS' );
+	container.appendChild( renderer.domElement );
+
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+	var light = new THREE.PointLight(0xffffff);
+	light.position.set(0,250,0);
+	scene.add(light);
+
+    THREE.ImageUtils.crossOrigin = '';
+
+
+
+                  const loader = new THREE.GLTFLoader();
+
+                    loader.load( 'Assets/StudioModel.gltf', function ( gltf ) {
+                      scene.add( gltf.scene );
+                      gltf.animations; // Array<THREE.AnimationClip>
+                      gltf.scene; // THREE.Group
+                      gltf.scenes; // Array<THREE.Group>
+                      gltf.cameras; // Array<THREE.Camera>
+                      gltf.asset; // Object
+
+                    }, undefined, function ( error ) {
+
+                      console.error( error );
+
+                    } );
+
+
+
+
+    window.addEventListener( 'resize', onWindowResize, false );
+	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+function onDocumentMouseDown( event ) { mousePressed = true; }
+function onDocumentMouseUp( event ) { mousePressed = false; syncframe = 0; }
+function onDocumentMouseMove( event ) {
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    raycaster.setFromCamera( mouse.clone(), camera );
+    // var ico = scene;
+    // var objects = raycaster.intersectObjects(ico.children);
+    // var o = [];
+    // if (objects.length>0) {
+    //     for (var i in objects) {
+    //        if (objects[i].object.userData.verticeIndex) {
+    //             o.push(objects[i].object.userData.verticeIndex);
+    //        }
+    //     }
+    //     o = o.length>0 ? o[0] : -1;
+    // } else {
+    //     o = -1;
+    // }
+    // activeCell = (o>=0) ? true : false;
+
+    // if (!mousePressed) {
+    //     for(var i in ico.children) {
+    //         if (ico.children[i].userData.behav==='cell') {
+    //             if (ico.children[i].userData.verticeIndex===o) {
+    //                 ico.children[i].material.color.setHex(0x78F9F6);
+    //                 ico.children[i].scale.set(2,2,2);
+    //             } else {
+    //                 ico.children[i].material.color.setHex(0xFF1111);
+    //                 ico.children[i].scale.set(1,1,1);
+    //             }
+    //         }
+    //         if (ico.children[i].userData.behav==='wireframe') {
+    //             if (ico.children[i].userData.verticeIndex===o) {
+    //                 ico.children[i].material.opacity = 0.4;
+    //             } else {
+    //                 ico.children[i].material.opacity = 0.1;
+    //             }
+    //         }
+    //     }
+    // }
+}
+
+
+
+
+
+
+
+
+
+function animate()
+{
+    requestAnimationFrame( animate );
+    syncframe++;
+	  render();
+
+}
+
+
+function render()
+{
+    renderer.render(scene, camera);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var hash = window.location.hash.substr(1);
 var result = hash.split('&');
 var clas;
@@ -780,6 +930,7 @@ loader.load(
 
 	}
 );
+
 
 
 
