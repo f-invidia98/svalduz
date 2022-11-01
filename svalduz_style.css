@@ -233,6 +233,10 @@ body{
   cursor: pointer;
 }
 
+.cursor_img {
+  cursor: pointer;
+}
+
 .hide{
   display: none;
 }
@@ -450,6 +454,9 @@ padding-bottom: 30px;
 .legal-info{
   display: none;
 }
+.sostenibilita-info{
+  display: none;
+}
 
 
 
@@ -519,7 +526,7 @@ height: 100vh;
 @media only screen and (min-width: 376px) {
 
   .line-height-more{
-    line-height: 25pt;
+    line-height: 18pt;
   }
 
   .padding_top{

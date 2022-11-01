@@ -236,10 +236,13 @@ function scroll_elements(){
   schedescroll_1.scrollTop = 0;
   var schedescroll_2 = document.getElementById("a60-89");
   schedescroll_2.scrollTop = 0;
+
   // var schedescroll_3 = document.getElementById("a89-19");
   // schedescroll_3.scrollTop = 0;
   // var schedescroll_4 = document.getElementById("a20");
   // schedescroll_4.scrollTop = 0;
+  var schedescroll_5 = document.getElementById("posizioni_aperte");
+  schedescroll_5.scrollTop = 0;
 }
 
 
@@ -296,21 +299,21 @@ function remove_scheda_from_url() {
 
 var resizeId;
 
-$(window).resize(function() {
-  // clearTimeout(resizeId);
-  // resizeId = setTimeout(gen_func, 500);
-
-  if (gen != '0') {
-    gen_func()
-    if (open == true) {
-      $("#" + scheda).children(".scheda_hide").css("height","")
-      console.log("ei")
-    }else {
-
-    }
-  }
-
-})
+// $(window).resize(function() {
+//   // clearTimeout(resizeId);
+//   // resizeId = setTimeout(gen_func, 500);
+//
+//   if (gen != '0') {
+//     gen_func()
+//     if (open == true) {
+//       $("#" + scheda).children(".scheda_hide").css("height","")
+//       console.log("ei")
+//     }else {
+//
+//     }
+//   }
+//
+// })
 
 function mousehoverimg(){
   $(document).ready(function() {
@@ -413,70 +416,7 @@ mousehoverimg()
 
 
 
-function gen_func() {
 
-  archiv();
-
-  $(".schede").css("display", "none");
-
-
-  $("#a" + gen).css("display", "block");
-  $(".menu-archivio > div").removeClass("blue");
-  $("#m" + gen).addClass("blue");
-
-
-  if ($(window).width() >= 550) {
-    $(".menu-archivio > div").removeClass("hide")
-    $(".arrow").addClass("hide")
-    $(".inCorso").addClass("hide")
-    $(".hide_big").addClass("hide")
-    $(".indice_right").addClass("hide")
-    $(".indice > .center > .sortbtn").removeClass("hide")
-    $(".arrow").addClass("hide")
-
-
-    if (gen == "Now") {
-      $(".indice.normal").addClass("hide")
-      $(".indice.cantieriAperti").removeClass("hide")
-      $(".indice .indice_right.blu_flash").removeClass("hide")
-    }
-    else {
-      $(".indice.normal").removeClass("hide")
-      $(".indice.cantieriAperti").addClass("hide")
-      $(".indice .indice_right.blu_flash").addClass("hide")
-    }
-      txt();
-    $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
-
-
-  }
-  else if ($(window).width() < 550) {
-
-    $(".indice").addClass("hide")
-    $(".menu-archivio > div").addClass("hide")
-    $("#m" + gen).removeClass("hide")
-    $(".arrow").removeClass("hide")
-    $(".hide_small").addClass("hide")
-
-
-    $(".hide_big").removeClass("hide")
-    $(".inCorso").removeClass("hide")
-
-
-    if (gen == "Now") {
-      $(".hide_small").removeClass("hide")
-    }
-
-    $("#m" + gen + " > .sortbtn").removeClass("hide")
-
-    $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".menu-archivio").outerHeight() + "px)")
-
-  }
-
-
-
-
-}
 
 
 
@@ -746,23 +686,9 @@ $(".legal-toggle").click(function() {
   $(".indietro_2").removeClass("hide")
 })
 
-$(".sostenibilita-toggle").click(function() {
-  $(".studio-info").css("display", "none")
-  $(".sostenibilita-info").css("display", "inline-block")
-  $(".indietro").addClass("hide")
-  $(".indietro_2").removeClass("hide")
-})
-
 $(".legal-info").click(function() {
   $(".studio-info").css("display", "inline-block")
   $(".legal-info").css("display", "none")
-  $(".indietro").removeClass("hide")
-  $(".indietro_2").addClass("hide")
-})
-
-$(".sostenibilita-info").click(function() {
-  $(".studio-info").css("display", "inline-block")
-  $(".sostenibilità-info").css("display", "none")
   $(".indietro").removeClass("hide")
   $(".indietro_2").addClass("hide")
 })
@@ -771,7 +697,6 @@ $(".sostenibilita-info").click(function() {
   $(".indietro_2").click(function(){
     $(document).ready(function(){
     $(".legal-info").trigger("click");
-    $(".sosteniblità-info").trigger("click");
 });
   })
 
@@ -890,6 +815,10 @@ function txt(){
     $(".txt_3").removeClass("hide")
   }
 }
+
+
+
+
 
 
 
