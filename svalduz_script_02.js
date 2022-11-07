@@ -55,14 +55,16 @@ var scheda;
 start();
 
 function landingPage() {
+
+setTimeout(function(){
   setInterval(function() {
     $(".studio_landing").addClass("studio_dis")
     $(".svalduz_landing").addClass("svladuz_dis")
-
   }, 500)
   setInterval(function() {
     $(".landingPage").addClass("landing_dis")
-  }, 1000)
+  }, 2100)
+}, 300)
 
 
 }
@@ -111,6 +113,7 @@ $("#archivio-toggle").click(function() {
   }
   else if ($(window).width() < 549) {
     archiv();
+
   }
 });
 
@@ -146,6 +149,7 @@ $("#studio-toggle").click(function() {
 $(".arrow").click(function() {
   gen_0();
   archiv();
+
 });
 
 
@@ -254,7 +258,6 @@ function gen_0() {
   $(".pos").removeClass("padding_top")
 
   $("#studio-cont").css("display", "none")
-
   $(".studio-hide").css("display", "none")
   $("#archivio-cont").css("display", "none")
   $(".archivio-hide").css("display", "none")
@@ -324,6 +327,37 @@ function mousehoverimg(){
 
 mousehoverimg()
 
+var scrollScheda;
+var scrollSchedaOffset;
+
+
+function scheda_open(scheda, callback_scheda){
+  $("#" + scheda).children(".scheda_hide").removeClass("hide");
+  height = $("#" + scheda).find(".scheda_hide").outerHeight();
+  $("#" + scheda).children(".scheda_hide").css("height","0px");
+  $(".scheda_hide").addClass("hide");
+  $("#" + scheda).children(".scheda_hide").removeClass("hide");
+  $("#" + scheda).children(".scheda_hide").css("height",height);
+  $("#" + scheda + " > .scheda_click").addClass("blue");
+setTimeout(function(){
+    callback_scheda(gen);
+},100)
+
+}
+
+function scheda_scroll(gen){
+  if ($(window).width() < 550) {
+      scrollSchedaOffset = $(".archivio-text").outerHeight() + $(".menu-archivio").outerHeight();
+  } else if ($(window).width() > 550) {
+    scrollSchedaOffset = $(".archivio-text").outerHeight() + $(".indice").outerHeight();
+  }
+
+
+  scrollScheda = document.getElementById(scheda).offsetTop - scrollSchedaOffset;
+  document.getElementById("a" + gen).scrollTop = scrollScheda;
+
+}
+
 function scheda_func(scheda){
 
 
@@ -368,18 +402,44 @@ mousehoverimg()
 //     })
 
 
-      // setTimeout(function(){
-      //
-      //
-      // },300)
+  // setTimeout(function(){
+  //
+  //       $("#" + scheda).children(".scheda_hide").removeClass("hide")
+  //       height = $("#" + scheda).find(".scheda_hide").outerHeight();
+  //       $("#" + scheda).children(".scheda_hide").css("height","0px")
+  //       $(".scheda_hide").addClass("hide")
+  //       $("#" + scheda).children(".scheda_hide").removeClass("hide")
+  //       $("#" + scheda).children(".scheda_hide").css("height",height)
+  //
+  //       $("#" + scheda + " > .scheda_click").addClass("blue")
+  //     },50)
+  //
+  //       setTimeout(function(){
+  //
+  //         if ($(window).width() < 550) {
+  //             scrollSchedaOffset = $(".archivio-text").outerHeight() + $(".menu-archivio").outerHeight();
+  //         } else if ($(window).width() > 550) {
+  //           scrollSchedaOffset = $(".archivio-text").outerHeight() + $(".indice").outerHeight();
+  //         }
+  //
+  //         // scrollSchedaOffset = $(".archivio-text").outerHeight() + $(".menu-archivio").outerHeight();
+  //
+  //         scrollScheda = document.getElementById(scheda).offsetTop - scrollSchedaOffset;
+  //         document.getElementById("a" + gen).scrollTop = scrollScheda;
+  //
+  //
+  //       },400)
 
-        $("#" + scheda).children(".scheda_hide").removeClass("hide")
-        height = $("#" + scheda).find(".scheda_hide").outerHeight();
-        $("#" + scheda).children(".scheda_hide").css("height","0px")
-        $(".scheda_hide").addClass("hide")
-        $("#" + scheda).children(".scheda_hide").removeClass("hide")
-        $("#" + scheda).children(".scheda_hide").css("height",height)
-        $("#" + scheda + " > .scheda_click").addClass("blue")
+  scheda_open(scheda, scheda_scroll);
+
+
+
+
+
+
+
+
+
 
 
 
@@ -414,8 +474,12 @@ mousehoverimg()
 
 
 function gen_func() {
-
+// console.log(gen)
+if (gen!="studio") {
   archiv();
+}
+
+
 
   $(".schede").css("display", "none");
 
@@ -446,7 +510,9 @@ function gen_func() {
       $(".indice .indice_right.blu_flash").addClass("hide")
     }
       txt();
-    $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
+      $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".indice").outerHeight() + "px)")
+
+
 
 
   }
@@ -468,8 +534,10 @@ function gen_func() {
     }
 
     $("#m" + gen + " > .sortbtn").removeClass("hide")
+    setTimeout(function(){
+      $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".menu-archivio").outerHeight() + "px)")
 
-    $(".schede").css("height", "calc(" + $("#archivio-cont").outerHeight() + "px - " + $(".archivio-text").outerHeight() + "px - " + $(".menu-archivio").outerHeight() + "px)")
+    },1000)
 
   }
 
@@ -598,12 +666,12 @@ $('.immagine').click(function() {
     if (xcheck == 1) {
       slideIndex += 1
       showSlides(slideIndex, slides)
-      console.log(slideIndex)
+      // console.log(slideIndex)
     }
     else if (xcheck == 0) {
       slideIndex -= 1
       showSlides(slideIndex, slides)
-      console.log(slideIndex)
+      // console.log(slideIndex)
     }
 
 
@@ -677,9 +745,10 @@ function enterFullscreen() {
 
     $(".immagine_big").css("width", "auto")
     $(".immagine").addClass("immagine_big")
-    $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
+    // $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
+    $(".immagine_big").css("top", "65px")
 
-    $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
+    // $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
 
     var resizeId;
 
@@ -702,13 +771,13 @@ function enterFullscreen() {
 
 
 function fullScreenResize() {
-  $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
+  // $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
 
     if ($(window).width() <= $(".immagine_big").width() + 60) {
         $(".immagine_big").css("width", $(window).width() - 60)
         $(".immagine_big").css("height", "auto")
     }else{
-      $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
+      // $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
         $(".immagine_big").css("width", "auto")
     }
   }
