@@ -12,6 +12,7 @@
 
 #entra{
   transition: 0.3s;
+
 }
 
 .underline{
@@ -622,6 +623,10 @@ display: none;
 
 @media only screen and (max-width: 550px) {
 
+  #entra{
+
+    font-size: 22pt;
+  }
   html{
     height: 100vh; /* Fallback for browsers that do not support Custom Properties */
     height: calc(var(--vh, 1vh) * 100);
