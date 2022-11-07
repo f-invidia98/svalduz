@@ -1,199 +1,256 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <head>
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="three.js" type="text/javascript"></script>
+    <link href="svalduz_style.css" rel="stylesheet" type="text/css">
 
-<head>
-  <meta charset="utf-8">
-  <title>Svalduz</title>
-  <meta name="viewport" content="width=device-width" />
-  <link href="svalduz_style.css" rel="stylesheet" type="text/css">
-  <script src="jquery.js" type="text/javascript"></script>
-  <script src="three.js" type="text/javascript"></script>
-
-</head>
-
-<body>
+  </head>
+  <body>
 
 
-
-  <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
-
-
-
-  <div class="fullscreen hide">
-
-  </div>
-
-  <div class="exitFullscreen hide red">
-    Chiudi
-  </div>
-
-<!-- LANDING PAGE -->
-
-  <div class="landingPage">
-    <div class=" studio_landing ">
-      Studio
+    <div class="cursor" id="entra" style="position:absolute; bottom:65px; left:200px; z-index:200; font-family: GT-America-Standard-Regular;">
+      Entra nel sito
     </div>
-    <div class="svalduz_landing">
-      Svladuz
-    </div>
-  </div>
+    <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+
+    <script src="three.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="TrackballControls.js"></script>
+    <script src="OrbitControls.js"></script>
+    <script src="Projector.js"></script>
+    		<script>
+
+
+
+
+
+
+//           const scene = new THREE.Scene();
+//         			const camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 1000 );
+//
+//         			const renderer = new THREE.WebGLRenderer();
+//         			renderer.setSize( window.innerWidth, window.innerHeight );
+//         			document.body.appendChild( renderer.domElement );
+//
+//
+//
+//               const loader = new THREE.GLTFLoader();
+//
+//                 loader.load( 'Assets/StudioModel.gltf', function ( gltf ) {
+//                   console.error( "jj" );
+//                   scene.add( gltf.scene );
+//                   gltf.animations; // Array<THREE.AnimationClip>
+//   gltf.scene; // THREE.Group
+//   gltf.scenes; // Array<THREE.Group>
+//   gltf.cameras; // Array<THREE.Camera>
+//   gltf.asset; // Object
+//
+//                 }, undefined, function ( error ) {
+//
+//                   console.error( error );
+//
+//                 } );
+//
+//                 const color = new THREE.Color("rgb(255, 0, 0)");
+//                 scene.background = color;
+//                 const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+//                 scene.add( light );
+//
+//         			camera.position.z = 10;
+//
+//
+//
+//
+//
+//
+//
+//           //     function createControls( camera ) {
+//           //
+//     			// 	controls = new TrackballControls( camera, renderer.domElement );
+//           //
+//     			// 	controls.rotateSpeed = 1.0;
+//     			// 	controls.zoomSpeed = 1.2;
+//     			// 	controls.panSpeed = 0.8;
+//           //
+//     			// 	controls.keys = [ 'KeyA', 'KeyS', 'KeyD' ];
+//           //
+//     			// }
+//
+// var raycaster = new THREE.Raycaster();
+//
+//
+//
+//
+//
+//               function animate() {
+//           requestAnimationFrame(animate);
+//           renderer.render(scene, camera);
+//         }
+//         animate();
+
+
+
+
+
+
+
+var container, scene, camera, renderer, controls;
+var projector, INTERSECTED;
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+var ico;
+var mousePressed = false;
+var activeCell = false;
+var syncframe = 0;
+
+init();
+animate();
+
+function init()
+{
+
+	scene = new THREE.Scene();
+
+	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
+    var MAG_ANGLE = 30;
+	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+	scene.add(camera);
+	camera.position.set(15,15,15);
+	camera.lookAt(scene.position);
 
+    renderer = new THREE.WebGLRenderer( {antialias:true} );
+	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	container = document.getElementById( 'ThreeJS' );
+	container.appendChild( renderer.domElement );
 
-<!-- MENU -->
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
 
-  <div class="menu">
-    <div id="studio-menu" class="window pos">
-      <span id="studio-toggle" class="cursor">Studio</span></br>
-      <div class="studio-hide cursor">
-        <span class="indietro cursor variant">← Indietro</span>
-        <span class="indietro_2 cursor variant hide opacity">← Indietro</span>
-      </div>
-    </div>
-    <div id="archivio-menu" class="window pos">
-      <span id="archivio-toggle" class="cursor">Archivio</span></br>
-      <div class="archivio-hide cursor">
-        <span class="indietro cursor variant">← Indietro</span>
+	var light = new THREE.PointLight(0xffffff);
+	light.position.set(0,250,0);
+	scene.add(light);
 
+    THREE.ImageUtils.crossOrigin = '';
 
 
-      </div>
 
+                  const loader = new THREE.GLTFLoader();
 
+                    loader.load( 'Assets/StudioModel.gltf', function ( gltf ) {
+                      scene.add( gltf.scene );
+                      gltf.animations; // Array<THREE.AnimationClip>
+                      gltf.scene; // THREE.Group
+                      gltf.scenes; // Array<THREE.Group>
+                      gltf.cameras; // Array<THREE.Camera>
+                      gltf.asset; // Object
 
+                    }, undefined, function ( error ) {
 
-    </div>
-  </div>
+                      console.error( error );
 
+                    } );
 
 
 
-  <div class="">
 
+    window.addEventListener( 'resize', onWindowResize, false );
+	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+}
 
-<!-- STUDIO -->
-
-    <div id="studio-cont" class="window w_b studio">
-      <div class="padding_top padding_LR padding_bottom">
-<div class="studio-info" style="white-space:pre-wrap">Studio Svalduz è uno studio di Architettura con sede a Venezia dal 1960.
-
-Lo Studio ha saputo fare della collaborazione con le aziende, i professionisti e le maestranze il suo segno evolutivo. Nato come studio di ingegneria con sede in Piazzo Ferretto a Mestre, lo Studio ha dato un grande impulso allo sviluppo della città tra gli anni '60 e '90 sotto la direzione del suo fondatore l’Ing. Giuseppe Svalduz. Dopo essersi trasferito nella sede di Via Mazzini, oggi lo Studio di Marghera è condotto, assieme ai propri collaboratori, dagli Arch. Nicola e Giovanni Svalduz, rispettivamente seconda e terza generazione della famiglia.
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+}
 
-Al fine di preservare e valorizzare la memoria storica del proprio lavoro, negli anni sono stati ampiamente raccolti materiali, testi, strumenti e documenti relativi ai progetti.
-Più di recente lo studio ha iniziato un processo di catalogazione e digitalizzazione del proprio patrimonio progettuale e documentale, così da salvaguardarlo e renderlo fruibile online.
-L'Archivio oggi comprende novecento progetti analogici e circa settecento in formato digitale, una selezione di modelli, strumenti di lavoro, assieme a un fondo fotografico e cartografico e infine un'ampia raccolta di documenti. A questi si affiancano circa 2000 titoli che spaziano fra arte, architettura, design, fotografia, grafica, urbanistica, storia e filosofia oltre ad una vasta selezione di riviste e periodici.
+function onDocumentMouseDown( event ) { mousePressed = true; }
+function onDocumentMouseUp( event ) { mousePressed = false; syncframe = 0; }
+function onDocumentMouseMove( event ) {
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    raycaster.setFromCamera( mouse.clone(), camera );
+    // var ico = scene;
+    // var objects = raycaster.intersectObjects(ico.children);
+    // var o = [];
+    // if (objects.length>0) {
+    //     for (var i in objects) {
+    //        if (objects[i].object.userData.verticeIndex) {
+    //             o.push(objects[i].object.userData.verticeIndex);
+    //        }
+    //     }
+    //     o = o.length>0 ? o[0] : -1;
+    // } else {
+    //     o = -1;
+    // }
+    // activeCell = (o>=0) ? true : false;
 
-La contaminazione tra l’archivio e la pratica contemporanea racconta di un duplice interesse per la ricerca e la sperimentazione, da cui ne deriva la sintesi progettuale. I progetti ricercano il legame con il territorio, espressione di  una produzione pregiata e locale, di una capacità di rinnovare l'estetica e la funzionalità degli interventi, e di una peculiare manifestazione della cultura del progetto italiano.
+    // if (!mousePressed) {
+    //     for(var i in ico.children) {
+    //         if (ico.children[i].userData.behav==='cell') {
+    //             if (ico.children[i].userData.verticeIndex===o) {
+    //                 ico.children[i].material.color.setHex(0x78F9F6);
+    //                 ico.children[i].scale.set(2,2,2);
+    //             } else {
+    //                 ico.children[i].material.color.setHex(0xFF1111);
+    //                 ico.children[i].scale.set(1,1,1);
+    //             }
+    //         }
+    //         if (ico.children[i].userData.behav==='wireframe') {
+    //             if (ico.children[i].userData.verticeIndex===o) {
+    //                 ico.children[i].material.opacity = 0.4;
+    //             } else {
+    //                 ico.children[i].material.opacity = 0.1;
+    //             }
+    //         }
+    //     }
+    // }
+}
 
 
-          <div class="opacity">Contatti</div>Edificio “Torre Uno”  Banchina dei Molini, 8
-30175 – Marghera (VE)
-<a href="mailto:info@studiosvalduz.it">E: info@studiosvalduz.it</a>
-T: +39 041 938328
-W: studiosvalduz.it
 
 
-          <div class="opacity">Studio</div>Nicola Svalduz
-Giovanni Svalduz
-Maurizio Goatin
-Francesco Pizzoleo
-Nicola Baccega
-<a href="posizioni-aperte.html"><div class="blu_flash">
-  POSIZIONI APERTE
-</div></a>
 
 
-          <div class="opacity">Clienti selezionati</div><div class="opacity">Settore: Società</div>Autoserenissima srl
-Alì spa
-Artebianca srl
-BCC Pordenonese e Monsile
-Bimotor spa
-Calcestruzzi spa
-Contini Arte srl
-Consorzio Trasportatori San Giuliano
-Cortina Express srl
-Damiani spa
-Generali spa
-Grandi Molini Italiani spa
-Gruppo Argenta spa
-Hotel Service srl
-Lodes srl
-Ott Art srl
-Rubelli spa
-Se.r.navi srl
-Studio Italia Design srl
-Venini spa
 
-<div class="opacity">Settore: Pubblici</div>ATER Venezia
-CCIA di Venezia e Rovigo
-Città Metropolitana di Venezia
-Comune di Chioggia
-Comune di San Vito al Tagliamento
-Comune di Venezia
-Interporto di Venezia
-I.P.A.V.
-Patriarcato di Venezia
-ULSS 3 Serenissima
-Vega Parco Scientifico e Tecnologico di Venezia
-Veritas spa
 
-<div class="opacity">Settore: Automotive</div>Alfaromeo
-Citroen
-Fiat
-Honda
-Jaguar
-Lancia
-Land Rover
-Mazda
-Subaru
-Volkswagen
-Volvo
 
+function animate()
+{
+    requestAnimationFrame( animate );
+    syncframe++;
+	  render();
 
-          <div class="opacity">Download</div><a href="Download/CV_Svalduz_Giovanni.pdf" target="_blank" class="underline">Giovanni Svalduz</a> <br><a href="Download/CV_Svalduz_Nicola.pdf" target="_blank" class="underline">Nicola Svalduz</a> <br><a href="Download/Company_Profile.pdf" target="_blank" class="underline">Company Profile</a> <br>
+}
 
-          <div class="">
-            <span class="legal-toggle cursor">Privacy </span></br>
-            <span class="sostenibilita-toggle cursor">Sostenibilità</span>
-          </div>
-          <div class="opacity">Design/Code</div><a href="https://jetlagalliance.com/" target="_blank">Jetlag Alliance</a>
 
-        </div>
-        <div class="legal-info" style="white-space:pre-wrap">Legal Notice
+function render()
+{
+     renderer.setClearColor( 0xffffff, 0);
+     renderer.render(scene, camera);
+}
 
-          <div class="opacity">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
-            ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent
-            luptatum zzril delenit augue duis dolore te feugait nulla.
 
-            Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
-            ut aliquip ex ea commodo consequat.
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
-            ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent
-            luptatum zzril delenit augue duis dolore te feugait nulla facilisi ex lobortis.
-          </div>
-        </div>
 
-        <div class="sostenibilita-info" style="white-space:pre-wrap"><div class="">
-            Lorem ipsum dolor sit amet,
+  $("#entra").click(function(){
 
+      $("#ThreeJS").css("opacity", "0")
+    setTimeout(function(){
+    window.location.href="home.html";
+  },500)
+  })
 
-          </div>
-        </div>
 
-      </div>
-    </div>
 
 
 
 
 
 
-    <div id="studio-cont" class="window w_b studio">
-      <div class="padding_top padding_LR padding_bottom">
-    <div class="studio-info" style="white-space:pre-wrap">
 
 
-          <div class="opacity">Contatti</div>
 
 
 
@@ -203,940 +260,10 @@ Volvo
 
 
 
-        </div>
 
-      </div>
-    </div>
 
 
 
-
-
-
-
-
-    <div id="archivio-cont" class="window archivio">
-      <div class="archivio-text border padding_top padding_LR padding_bottom">
-        <span class="txt_incorso hide">La sezione in corso, parallela alle altre unità archivistiche, comprende una selezione dei progetti oggi aperti in attesa di essere archiviati. I materiali disponibili, appartenenti alla sezione digitale, comprendono immagini, disegni, modelli e fotografie.</span>
-        <span class="txt_gen hide">L'Archivio oggi comprende novecento progetti analogici e circa settecento in formato digitale, una selezione di modelli, strumenti di lavoro, assieme a un fondo fotografico e cartografico e infine un'ampia raccolta di documenti. A questi si affiancano circa 2000 titoli che spaziano fra arte, architettura, design, fotografia, grafica, urbanistica, storia e filosofia oltre ad una vasta selezione di riviste e periodici.</span>
-        <span class="txt_1 hide">L'unità archivistica 1960-1989 testimonia i primi trent'anni della produzione dell'Ing. Giuseppe Svalduz. Il fondo comprende 679 unità.  I materiali disponibili, appartenenti alla sezione analogica, comprendono mappe, quaderni, lettere, schizzi, lucidi, disegni, cianografie e fotografie.
-</br>Attualmente è in fase di acquisizione.</span>
-        <span class="txt_2 hide">L'unità archivistica 1990-2019 comprende la seconda parte dei progetti dell'Ing. Giuseppe Svalduz e la prima parte della produzione dell'Arch. Nicola Svalduz. Il fondo comprende 755 unità.  I materiali disponibili, divisi fra la sezione analogica e la sezione digitale, comprendono lucidi, disegni, fotografie e riproduzioni fotostatiche.
-</br>Attualmente è in fase di catalogazione e acquisizione.</span>
-        <span class="txt_3 hide">L'unità archivistica 2020-2022 comprende la più recente produzione degli Arch. Nicola e Giovanni Svalduz. Il fondo attualmente comprende 159 unità.  I materiali disponibili, appartenenti alla sezione digitale, comprendono immagini, disegni, modelli e fotografie.
-</br>Attualmente è in fase di catalogazione.</span>
-     </div>
-
-
-      <div class="menu-archivio line-height-more variant">
-
-        <div class="border_bottom hide_big">
-
-        </div>
-        <span class="variant hide arrow blue">←</span>
-        <div id="mNow" class="aNow cursor line-height-more border_bottom"><div class="indice_right blu_flash hide_small hide">
-          (14)
-        </div>
-          In corso
-        </div>
-        <div id="m60-89" class="a60-89 cursor line-height-more border_bottom">
-          1960 → 1989
-          <div class="indice_right sortbtn black hide">
-            <span class="alpha opacity ">(A-Z)</span>/<span class="num">(0-9)</span>
-          </div>
-        </div>
-        <div id="m89-19" class="a89-19 cursor line-height-more border_bottom">
-          1989 → 2019
-          <div class="indice_right sortbtn black hide">
-            <span class="alpha opacity ">(A-Z)</span>/<span class="num">(0-9)</span>
-          </div>
-        </div>
-        <div id="m20" class="a20 cursor line-height-more border_bottom">
-          2020 → 2022
-          <div class="indice_right sortbtn black hide">
-            <span class="alpha opacity ">(A-Z)</span>/<span class="num">(0-9)</span>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div class="indice variant padding_LR normal">
-        <div class="center">
-
-          <div class="indice_center">
-            Indice ↓
-          </div>
-          <div class="indice_right sortbtn">
-            <span class="alpha opacity">(A-Z)</span>/<span class="num">(0-9)</span>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="indice variant padding_LR cantieriAperti hide">
-        <div class="center">
-
-          <div id="cantieriAperti" class="indice_center cursor cantieri">
-            Cantieri aperti ↓
-          </div><div class="indice_right blu_flash">
-            (14)
-          </div>
-
-        </div>
-      </div>
-      <div class="border">
-
-      </div>
-
-      <div id="a60-89" class="schede">
-
-
-
-
-
-        <div class="scheda sortme" id="0001">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome" style="cursor:url('Assets/Sfondo.png'), auto">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0002">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0002</div>
-            <div class="nome">Basarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-            <!-- <div class="border_bottom">
-
-            </div> -->
-
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0003">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0004">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0005">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0006">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0007">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0008">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0009">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0010">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0011">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0012">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0013">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0014">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0015">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0016">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-        <div class="scheda sortme" id="0017">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0018">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-
-        <div class="scheda sortme" id="0019">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-        <div class="scheda sortme" id="0020">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-
-        <div class="scheda sortme" id="0021">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-
-        <div class="scheda sortme" id="0022">
-          <div class="scheda_click cursor padding_LR">
-            <div class="numero">0001</div>
-            <div class="nome">Casarin Ettore</div>
-            <div class="anno">1959—1961</div>
-          </div>
-          <div class="scheda_hide hide">
-
-            <div class="immagini padding_LR">
-              <img class="immagine cursor" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR">
-              <div class="content">• Architettura industriale</br>
-                • Scorzè (VE) 1960 ca.</br>
-                • Fotografia</br>
-                • Fondo analogico
-              </div><div class="foto_n">1/4</div><div class="full cursor">
-                Fullscreen
-              </div>
-            </div>
-            <div class="border_bottom_gen">
-
-            </div>
-              <!-- <div class="border_bottom">
-
-              </div> -->
-          </div>
-        </div>
-
-
-
-        <!-- <div class="scheda padding_LR cursor" id="0001">
-          <div class="numero">0001</div><div class="nome">Casarin Ettore</div><div class="anno">1959—1961</div></br>
-          <div class="immagine hide">oooo</div>
-        </div> -->
-
-      </div>
-
-      <div id="aNow" class="schede lui">
-
-
-        <div class="inCorsoLanding">
-
-        </div>
-        <div class="scheda" id="n0001">
-          <div class="wrap">
-            <div class="scheda_click cursor_normal padding_LR normal">
-              <div class="numero">0001</div>
-              <div class="nome">Casarin Ettore</div>
-              <div class="anno">1959—1961</div>
-            </div>
-            <div class="scheda_click cursor_normal padding_LR beneath">
-              <div class="numero">0001</div>
-              <div class="nome">Casarin Ettore</div>
-              <div class="anno">1959—1961</div>
-            </div>
-          </div>
-
-          <div class="">
-            <div class="immagini">
-              <img class="immagine cursor no_padding" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide no_padding" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide no_padding" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide no_padding" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR hide inCorso">
-              <div class="content">Casarin Ettore <br>
-                2022—2024<br>
-                Sacile, Treviso<br>
-                Residenza
-              </div>
-            </div>
-          </div>
-          <div class="border_bottom">
-
-          </div>
-        </div>
-
-
-
-        <div class="scheda" id="n0002">
-          <div class="wrap">
-            <div class="scheda_click  padding_LR normal">
-              <div class="numero">0001</div>
-              <div class="nome">Casarin Ettore</div>
-              <div class="anno">1959—1961</div>
-            </div>
-            <div class="scheda_click  padding_LR beneath">
-              <div class="numero">0001</div>
-              <div class="nome">Casarin Ettore</div>
-              <div class="anno">1959—1961</div>
-            </div>
-          </div>
-          <div class="">
-            <div class="immagini">
-              <img class="immagine cursor no_padding" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide no_padding" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide no_padding" src="Assets/47-1-1_Edit.jpg">
-              <img class="immagine cursor hide no_padding" src="Assets/47-1-1_Edit.jpg">
-            </div>
-
-            <div class="testo_scheda padding_LR hide inCorso">
-              <div class="content">Casarin Ettore <br>
-                2022—2024<br>
-                Sacile, Treviso<br>
-                Residenza
-              </div>
-            </div>
-          </div>
-          <div class="border_bottom">
-
-          </div>
-        </div>
-
-
-
-
-
-        <!-- <div class="scheda padding_LR cursor" id="0001">
-          <div class="numero">0001</div><div class="nome">Casarin Ettore</div><div class="anno">1959—1961</div></br>
-          <div class="immagine hide">oooo</div>
-        </div> -->
-
-      </div>
-
-
-    </div>
-
-
-  </div>
-
-
-  <script src="svalduz_script_02.js" type="text/javascript"></script>
-
-
-  <script src="three.js"></script>
-  <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
-  <script src="TrackballControls.js"></script>
-  <script src="OrbitControls.js"></script>
-  <script src="Projector.js"></script>
-</body>
-
+        </script>
+  </body>
 </html>

@@ -747,6 +747,7 @@ function enterFullscreen() {
     $(".immagine").addClass("immagine_big")
     // $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
     $(".immagine_big").css("top", "65px")
+    chiudiPosition();
 
     // $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
 
@@ -767,14 +768,27 @@ function enterFullscreen() {
 
 
   }
+
 }
+
+function chiudiPosition() {
+  if ($(window).width() <= 700) {
+    $(".exitFullscreen").css("top", $(".immagine_big").height() + 65 + 15 + "px")
+
+  } else {
+    $(".exitFullscreen").css("top", " 65px")
+
+  }
+
+}
+
 
 
 function fullScreenResize() {
   // $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
-
+  chiudiPosition();
     if ($(window).width() <= $(".immagine_big").width() + 60) {
-        $(".immagine_big").css("width", $(window).width() - 60)
+        // $(".immagine_big").css("width", $(window).width() - 60)
         $(".immagine_big").css("height", "auto")
     }else{
       // $(".immagine_big").css("height", $(".schede").outerHeight() - 10)

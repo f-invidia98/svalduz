@@ -645,7 +645,7 @@ function fullScreenResize() {
   $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
 
     if ($(window).width() <= $(".immagine_big").width() + 60) {
-        $(".immagine_big").css("width", $(window).width() - 60)
+        // $(".immagine_big").css("width", $(window).width() - 60)
         $(".immagine_big").css("height", "auto")
     }else{
       $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
