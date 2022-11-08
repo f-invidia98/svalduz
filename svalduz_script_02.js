@@ -323,7 +323,7 @@ function mousehoverimg(){
   $(document).ready(function() {
     $(document).mousemove(function() {
       if ($(".nome:hover").length != 0 && gen != "Now") {
-        $(".cursor_img").css('cursor', 'url("Assets/Sfondo.png"), auto');
+        $(".cursor_img").css('cursor', 'url("Assets/47-1-1_SUPERLOW.jpg"), auto');
       }
     });
 });
@@ -779,7 +779,7 @@ function chiudiPosition() {
     $(".exitFullscreen").css("top", $(".immagine_big").height() + 15 + 15 + "px")
 
   } else {
-    $(".exitFullscreen").css("top", " 65px")
+    $(".exitFullscreen").css("top", " 30px")
 
   }
 
@@ -869,13 +869,13 @@ $(".sostenibilita-info").click(function() {
 // MINIATURA SCHEDA
 
 
-// $(document).ready(function() {
-//   $(document).mousemove(function() {
-//     if ($(".scheda_click:hover").length != 0) {
-//       $('.scheda_click.cursor').css('cursor', 'url("Assets/Sfondo.png"), auto');
-//     }
-//   });
-// });
+$(document).ready(function() {
+  $(document).mousemove(function() {
+    if ($(".scheda_click:hover").length != 0) {
+      $('.scheda_click.cursor').css('cursor', 'url("Assets/47-1-1_SUPERLOW.jpg"), auto');
+    }
+  });
+});
 
 
 
