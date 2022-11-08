@@ -190,7 +190,7 @@ function stato_verifier() {
 
   }
   else if (state.gen != "0") {
-
+      $(".menu_voce").addClass("menu_dis");
     if (state.gen == "studio") {
       stud();
     } else {
@@ -478,7 +478,7 @@ mousehoverimg()
 
 
 function gen_func() {
-// console.log(gen)
+console.log(gen)
 if (gen!="studio") {
   archiv();
 }
@@ -546,7 +546,7 @@ if (gen!="studio") {
 
 
 
-  $(".menu_voce").addClass("menu_dis");
+
 }
 
 
