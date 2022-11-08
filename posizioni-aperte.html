@@ -17,27 +17,26 @@
     }
 
     .wrapper{
-      background-color: #0000ff;
-      color: white;
+
       height: 100vh;
     }
 
     .menu{
-      color:white;
+      color:black;
     }
 
     #posizioni_aperte{
-      border-left: 1px solid white;
+      border-left: 1px solid black;
 
     }
 
     .wrap_posizione-aperta{
       width: 100%;
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid black;
     }
 
     .wrap_posizioni_cont{
-      border-top: 1px solid white;
+      border-top: 1px solid black;
     }
 
     .posizione-aperta{
@@ -49,7 +48,7 @@
     }
 
     .info_posizione{
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid black;
         line-height: 40px;
     }
 
@@ -58,7 +57,7 @@
     }
 
     .border_top{
-      border-top: 1px solid white;
+      border-top: 1px solid black;
     }
 
     .pulsante{
@@ -67,17 +66,16 @@
       font-size: 14pt;
       width: 140px;
       height: 39px;
-      border-right: 1px solid #0000ff;
-
+      border-right: 1px solid black;
+border-left: 1px solid black;
       display: inline-block;
-      color: #0000ff;
-      background-color: white;
+
     }
 
     .wrap_info_posizione{
-      height: 0px;
+      height: 100%;
       overflow: hidden;
-      display: none;
+      display: block;
       duration:1s;
     }
 
@@ -85,16 +83,14 @@
     @media only screen and (max-width: 550px) {
 
       .posizione-aperta{
-        font-size: 35pt;
+        font-size: 30pt;
         line-height: 35pt;
         padding-bottom: 15px;
         padding-top: 15px;
 
       }
 
-      .pulsante{
-        width: 50%;
-      }
+
 
     }
 
@@ -173,9 +169,7 @@
     <div class="pulsanti">
       <div class="pulsante">
         Candidati
-      </div><div class="pulsante chiudi">
-          Chiudi
-        </div>
+      </div>
     </div>
 
   </div>
@@ -192,9 +186,7 @@
     <div class="pulsanti">
       <div class="pulsante">
         Candidati
-      </div><div class="pulsante chiudi">
-          Chiudi
-        </div>
+      </div>
     </div>
 
   </div>
@@ -232,32 +224,32 @@
 
 
 
-  $(".posizione-aperta").click(function(){
-    if ($(this).hasClass("selected")) {
-      $(".wrap_info_posizione").css("display", "none")
-      $(".wrap_info_posizione").css("height", "0%")
-      $(this).removeClass("selected")
+  // $(".posizione-aperta").click(function(){
+  //   if ($(this).hasClass("selected")) {
+  //     $(".wrap_info_posizione").css("display", "none")
+  //     $(".wrap_info_posizione").css("height", "0%")
+  //     $(this).removeClass("selected")
+  //
+  //   } else {
+  //     $(".posizione-aperta").removeClass("selected")
+  //     $(".wrap_info_posizione").css("display", "none")
+  //     $(".wrap_info_posizione").css("height", "0px")
+  //     $(this).next(".wrap_info_posizione").css("display", "block")
+  //     $(this).next(".wrap_info_posizione").css("height", "100%")
+  //     $(this).addClass("selected")
+  //
+  //   }
+  //
+  //
+  //
+  // })
 
-    } else {
-      $(".posizione-aperta").removeClass("selected")
-      $(".wrap_info_posizione").css("display", "none")
-      $(".wrap_info_posizione").css("height", "0px")
-      $(this).next(".wrap_info_posizione").css("display", "block")
-      $(this).next(".wrap_info_posizione").css("height", "100%")
-      $(this).addClass("selected")
-
-    }
-
-
-
-  })
-
-  $(".chiudi").click(function(){
-
-    $(".wrap_info_posizione").css("display", "none")
-    $(".wrap_info_posizione").css("height", "0%")
-
-  })
+  // $(".chiudi").click(function(){
+  //
+  //   $(".wrap_info_posizione").css("display", "none")
+  //   $(".wrap_info_posizione").css("height", "0%")
+  //
+  // })
 
 
   </script>
