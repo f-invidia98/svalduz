@@ -507,8 +507,7 @@ if (gen!="studio") {
       $(".indice.normal").addClass("hide")
       $(".indice.cantieriAperti").removeClass("hide")
       $(".indice .indice_right.blu_flash").removeClass("hide")
-    }
-    else {
+    } else {
       $(".indice.normal").removeClass("hide")
       $(".indice.cantieriAperti").addClass("hide")
       $(".indice .indice_right.blu_flash").addClass("hide")
@@ -547,7 +546,7 @@ if (gen!="studio") {
 
 
 
-
+  $(".menu_voce").addClass("menu_dis");
 }
 
 
