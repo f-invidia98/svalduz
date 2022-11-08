@@ -750,7 +750,7 @@ function enterFullscreen() {
     $(".immagine_big").css("width", "auto")
     $(".immagine").addClass("immagine_big")
     // $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
-    $(".immagine_big").css("top", "65px")
+    $(".immagine_big").css("top", "30px")
     chiudiPosition();
 
     // $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
@@ -777,7 +777,7 @@ function enterFullscreen() {
 
 function chiudiPosition() {
   if ($(window).width() <= 700) {
-    $(".exitFullscreen").css("top", $(".immagine_big").height() + 65 + 15 + "px")
+    $(".exitFullscreen").css("top", $(".immagine_big").height() + 15 + 15 + "px")
 
   } else {
     $(".exitFullscreen").css("top", " 65px")

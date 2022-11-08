@@ -425,7 +425,7 @@ body{
   height: auto;
   /* height: calc(var(--vh, 1vh) * 100); */
   width: auto;
-  left: 15px;
+  left: 30px;
 
   max-width: 70vw;
   z-index: 30;
