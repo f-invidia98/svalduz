@@ -459,9 +459,9 @@ body{
   line-height: 14pt;
   padding-bottom: 70px;
     padding-top: 16px;
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-between; */
 }
 
 .schedaInfo{
