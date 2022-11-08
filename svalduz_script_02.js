@@ -69,7 +69,7 @@ setTimeout(function(){
 
 setInterval(function() {
 $(".menu_voce").addClass("menu_dis")
-},2500)
+},2300)
 
 }
 
