@@ -63,13 +63,13 @@ setTimeout(function(){
   }, 500)
   setInterval(function() {
     $(".landingPage").addClass("landing_dis")
-  }, 2100)
+  }, 1900)
 
 }, 300)
 
 setInterval(function() {
 $(".menu_voce").addClass("menu_dis")
-}, 3000)
+},2500)
 
 }
 
