@@ -7,9 +7,14 @@
 
   </head>
   <body>
+<div class="loadingWrap" style="position:absolute; width:100vw; height:100vh; z-index: 1000000; background: white;">
+  <div class="loading" style="position:absolute; text-align: center; top: 50%; left:46.5%; transform:translate(0, -50%)">
+    Loading.
+  </div>
+</div>
 
 
-    <div class="cursor" id="entra" style="position:absolute; bottom:65px; left:50vw; transform: translate(-50%, 0);z-index:200; font-family: GT-America-Standard-Regular;">
+    <div class="cursor" id="entra" style="position:absolute; text-decoration: underline; bottom:65px; left:50vw; transform: translate(-50%, 0);z-index:200; font-family: GT-America-Standard-Regular;">
       Vai al sito
     </div>
     <div id="ThreeJS" style="position: absolute; left:0px; top:0px; transition:0.3s; width:100vw; overflow:hidden"></div>
@@ -22,7 +27,30 @@
     		<script>
 
 
+function loading(){
+  setTimeout(function(){
+      $(".loading").html("Loading..")
+  },500)
+  setTimeout(function(){
+      $(".loading").html("Loading...")
+  },1000)
+  setTimeout(function(){
+      $(".loading").html("Loading.")
+  },1500)
+  setTimeout(function(){
+      $(".loading").html("Loading..")
+  },2000)
+  setTimeout(function(){
+      $(".loading").html("Loading...")
+  },2500)
+  setTimeout(function(){
+      $(".loadingWrap").css("display", "none")
+  },3000)
 
+
+}
+
+loading();
 
 
 
