@@ -26,13 +26,14 @@
     }
 
     #posizioni_aperte{
-      /* border-left: 1px solid black; */
+      border-left: 1px solid black;
 
     }
 
     .wrap_posizione-aperta{
       width: 100%;
       border-bottom: 1px solid black;
+
     }
 
     .wrap_posizioni_cont{
@@ -48,8 +49,9 @@
     }
 
     .info_posizione{
-        border-bottom: 1px solid black;
+        border-bottom: 1px dashed black;
         line-height: 40px;
+
     }
 
     .pulsanti{
@@ -67,8 +69,12 @@
       width: 140px;
       height: 39px;
       border-right: 1px solid black;
-border-left: 1px solid black;
+      border-left: 1px solid black;
       display: inline-block;
+      color: white;
+      background-color: black;
+      border-top: 1px solid black;
+      margin-top: -1px;
 
     }
 
@@ -87,6 +93,17 @@ border-left: 1px solid black;
 
 
     @media only screen and (max-width: 550px) {
+
+
+      #posizioni_aperte {
+    width: 100%;
+    right: 0;
+    left: auto;
+  }
+
+  .wrap_posizioni_cont{
+    margin-top: 60px;
+  }
 
       .posizione-aperta{
         font-size: 30pt;
