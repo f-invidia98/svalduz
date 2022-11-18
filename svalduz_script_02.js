@@ -749,7 +749,7 @@ function enterFullscreen() {
     $(".immagine_big").css("width", "auto")
     $(".immagine").addClass("immagine_big")
     // $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
-    $(".immagine_big").css("top", "30px")
+    $(".immagine_big").css("top", "15px")
     chiudiPosition();
 
     // $(".immagine_big").css("height", $(".schede").outerHeight() - 10)

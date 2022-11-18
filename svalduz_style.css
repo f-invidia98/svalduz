@@ -441,13 +441,13 @@ body{
 .immagine_big{
   position: absolute;
   top: 0;
-  padding-top: 1px;
-  padding-bottom: 30px;
+  padding-top: 0px;
+  padding-bottom: 15px;
   overflow: hidden;
   height: auto;
   /* height: calc(var(--vh, 1vh) * 100); */
   width: auto;
-  left: 30px;
+  left: 15px;
 
   max-width: 70vw;
   z-index: 30;
