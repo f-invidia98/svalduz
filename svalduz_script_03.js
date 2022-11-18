@@ -11,11 +11,11 @@ var slides;
 
 
 
-  $(document).ready(function() {
-    $("body").children().each(function() {
-        $(this).html($(this).html().replace(/&#8232;/g," "));
-    });
-});
+//   $(document).ready(function() {
+//     $("body").children().each(function() {
+//         $(this).html($(this).html().replace(/&#8232;/g," "));
+//     });
+// });
 
 
 
