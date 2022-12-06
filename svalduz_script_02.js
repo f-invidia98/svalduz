@@ -330,8 +330,9 @@ function mousehoverimg(){
   $(document).ready(function() {
     $(document).mousemove(function() {
       if ($(".nome:hover").length != 0 && gen != "Now") {
-        $(".cursor_img").css('cursor', 'url("Assets/47-1-1_SUPERLOW.jpg"), auto');
-      }
+        $(".cursor_img").css('cursor', 'url("47-1-1_SUPERLOW.jpg"), pointer;');
+        $(".cursor_img").css('cursor', 'url("47-1-1_SUPERLOW.svg"), pointer;');
+        $(".cursor_img").css('cursor', '-webkit-image-set(url("47-1-1_SUPERLOW.svg") 2x) 0 0, pointer;');      }
     });
 });
 }
@@ -879,7 +880,9 @@ $(".sostenibilita-info").click(function() {
 $(document).ready(function() {
   $(document).mousemove(function() {
     if ($(".scheda_click:hover").length != 0) {
-      $('.scheda_click.cursor').css('cursor', 'url("Assets/47-1-1_SUPERLOW.jpg"), auto');
+      $(".cursor_img").css('cursor', 'url("47-1-1_SUPERLOW.jpg"), pointer;');
+      $(".cursor_img").css('cursor', 'url("47-1-1_SUPERLOW.svg"), pointer;');
+      $(".cursor_img").css('cursor', '-webkit-image-set(url("47-1-1_SUPERLOW.svg") 2x) 0 0, pointer;');
     }
   });
 });
