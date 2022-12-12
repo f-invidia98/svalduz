@@ -1,6 +1,6 @@
 @font-face {
   font-family: GT-America-Standard-Regular;
-  src: url(Fonts/GT-America-Standard-Regular.otf);
+  src: url(Fonts/GT-America-Standard-Regular.woff);
   font-weight: 200;
 }
 
@@ -47,7 +47,7 @@ html {
     height: 100%;
     overflow: hidden;
     cursor: default;
-    /* -webkit-font-smoothing: antialiased; */
+    -webkit-font-smoothing: antialiased;
 }
 
 
