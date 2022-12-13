@@ -643,11 +643,11 @@ jQuery(function($) {
     $(document).mousemove(function() {
       if ($(".immagini:hover").length != 0) {
         if (currentMousePos.x > $(".immagine:hover").width() / 2) {
-          $('.immagine').css('cursor', 'url("Assets/NEXT.png"), auto');
+          $('.immagine').css('cursor', 'url("Assets/NEXT-5.svg"), auto');
           xcheck = 1;
         }
         else if (currentMousePos.x < $(".immagine:hover").width() / 2) {
-          $('.immagine').css('cursor', 'url("Assets/PREV.png"), auto');
+          $('.immagine').css('cursor', 'url("Assets/PREV-5.svg"), auto');
           xcheck = 0;
         }
       }
@@ -881,7 +881,7 @@ $(".sostenibilita-info").click(function() {
 $(document).ready(function() {
   $(document).mousemove(function() {
     if ($(".scheda_click:hover").length != 0) {
-      $(".scheda_click").css('cursor', 'url("/Assets/47-1-1_SUPERLOW.jpg"), pointer;');
+      $(".scheda_click").css('cursor', 'url("cursor.svg"), pointer;');
       // $(".scheda_click").css('cursor', 'url("/Assets/47-1-1_SUPERLOW.svg"), pointer;');
       // $(".scheda_click").css('cursor', '-webkit-image-set(url("/Assets/47-1-1_SUPERLOW.svg") 2x) 0 0, pointer;');
     }

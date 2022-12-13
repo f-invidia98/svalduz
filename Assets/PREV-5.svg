@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" height="32" width="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101.58 43.64">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-2 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-3 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        font-family: GTAmerica-Light, 'GT America';
+        font-size: 40px;
+        font-weight: 300;
+      }
+    </style>
+  </defs>
+  <g id="Livello_1" data-name="Livello 1">
+    <text class="cls-4" transform="translate(0 34.2)"><tspan class="cls-1" x="0" y="0">P</tspan><tspan class="cls-2" x="23.37" y="0">R</tspan><tspan class="cls-3" x="48.42" y="0">E</tspan><tspan x="72.9" y="0">V</tspan></text>
+  </g>
+</svg>
