@@ -30,6 +30,63 @@ window.addEventListener('resize', () => {
 
 
 
+var thumbnail;
+
+// $(document).ready(function() {
+//   $(document).mousemove(function() {
+//     if ($(".scheda").length != 0) {
+//       console
+//     }
+//   });
+// });
+
+
+//
+// $(document).ready(function() {
+//
+//           $(".scheda_click").hover(function(event) {
+//             $(".thumbnail").addClass("visible");
+//             $(".thumbnail").css("top", event.pageY);
+//             $(".thumbnail").css("left", event.pageX);
+//
+//
+//
+//
+//
+//       })
+// });
+//
+//
+// $(document).ready(function() {
+//   $(".scheda_click").mouseleave(function() {
+//     console.log("false")
+//     $('.thumbnail').removeClass("visible");
+//   })
+//   });
+
+// $(document).ready(function() {
+// $('.scheda_click').on({
+//
+//     mouseenter: function() {
+//         console.log("true")
+//
+//       thumbnail.addClass("visible");
+//       $(document).mousemove(function(event) {
+//           thumbnail.css("top", event.pageY);
+//           thumbnail.css("left", event.pageX);
+//       })
+//     },
+//     mouseleave: function() {
+//           console.log("false")
+//         $('.thumbnail').removeClass("visible");
+//     }
+// });
+// });
+
+
+
+
+
 
 $(window).on('popstate', function(event) {
  if (state.scheda == '0') {
@@ -326,19 +383,9 @@ $(window).resize(function() {
 
 })
 
-function mousehoverimg(){
-  $(document).ready(function() {
-    $(document).mousemove(function() {
-      if ($(".nome:hover").length != 0 && gen != "Now") {
-        $(".cursor_img").css('cursor', 'url("/Assets/47-1-1_SUPERLOW.jpg"), pointer;');
-        // $(".cursor_img").css('cursor', 'url("47-1-1_SUPERLOW.svg"), pointer;');
-        // $(".cursor_img").css('cursor', '-webkit-image-set(url("47-1-1_SUPERLOW.svg") 2x) 0 0, pointer;');
-      }
-    });
-});
-}
 
-mousehoverimg()
+
+
 
 var scrollScheda;
 var scrollSchedaOffset;
@@ -352,9 +399,10 @@ function scheda_open(scheda, callback_scheda){
   $("#" + scheda).children(".scheda_hide").removeClass("hide");
   $("#" + scheda).children(".scheda_hide").css("height",height);
   $("#" + scheda + " > .scheda_click").addClass("blue");
-setTimeout(function(){
-    callback_scheda(gen);
-},100)
+
+  setTimeout(function(){
+      callback_scheda(gen);
+  },100)
 
 }
 
@@ -371,10 +419,17 @@ function scheda_scroll(gen){
 
 }
 
+
+
+
+
+
+
+
 function scheda_func(scheda){
+console.log("scheda_func")
 
 
-mousehoverimg()
 
 
   if (open == true) {
@@ -445,26 +500,7 @@ mousehoverimg()
 
   scheda_open(scheda, scheda_scroll);
 
-
-
-
-
-
-
-
-
-
-
-
       open = true;
-
-      $(document).ready(function() {
-        $(document).mousemove(function() {
-          if ($(".nome:hover").length != 0) {
-            $("#" + scheda + " .nome").css('cursor', 'pointer');
-          }
-        });
-      });
 
     },400)
 
@@ -487,7 +523,8 @@ mousehoverimg()
 
 
 function gen_func() {
-console.log(gen)
+  console.log("gen_func")
+
 if (gen!="studio") {
   archiv();
 }
@@ -561,6 +598,7 @@ if (gen!="studio") {
 
 
 function archiv() {
+    console.log("archiv")
 
   $("#archivio-cont").css("display", "inline-block")
   $(".menu-archivio").css("display", "inline-block")
@@ -579,6 +617,7 @@ function archiv() {
 
 
 function stud() {
+  console.log("stud")
   $("#archivio-menu").css("display", "none")
   $(".pos").css("line-height", "16pt")
   $(".pos").addClass("padding_top")
@@ -661,6 +700,7 @@ jQuery(function($) {
 
 
 $('.immagine').click(function() {
+  console.log(".immagine.click")
   slides = $(this).parent().children(".immagine");
   jQuery(function($) {
     var currentMousePos = {
@@ -698,6 +738,7 @@ $('.immagine').click(function() {
 
 
 function showSlides(n, slides) {
+      console.log("showSlides")
   var i;
 
   // var dots = $(".dot");
@@ -788,7 +829,7 @@ function chiudiPosition() {
     $(".exitFullscreen").css("top", $(".immagine_big").height() + 15 + 15 + "px")
 
   } else {
-    $(".exitFullscreen").css("top", " 30px")
+    $(".exitFullscreen").css("top", " 15px")
 
   }
 
@@ -878,15 +919,7 @@ $(".sostenibilita-info").click(function() {
 // MINIATURA SCHEDA
 
 
-$(document).ready(function() {
-  $(document).mousemove(function() {
-    if ($(".scheda_click:hover").length != 0) {
-      $(".scheda_click").css('cursor', 'url("cursor.svg"), pointer;');
-      // $(".scheda_click").css('cursor', 'url("/Assets/47-1-1_SUPERLOW.svg"), pointer;');
-      // $(".scheda_click").css('cursor', '-webkit-image-set(url("/Assets/47-1-1_SUPERLOW.svg") 2x) 0 0, pointer;');
-    }
-  });
-});
+
 
 
 
