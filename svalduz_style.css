@@ -438,11 +438,14 @@ body{
   display: inline-block;
 }
 
+.immagini{
+  padding-top: 23px;
+}
 
 
 .immagine{
   display: block;
-  padding-top: 23px;
+
 
   width: 100%;
   position: relative;

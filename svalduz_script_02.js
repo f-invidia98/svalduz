@@ -40,29 +40,61 @@ var thumbnail;
 //   });
 // });
 
+var hoverscheda;
 
-//
 // $(document).ready(function() {
+// $(document).mousemove(function(e) {
+//   if ($("#" + scheda + "> .scheda_click").is(":hover") == true) {
 //
-//           $(".scheda_click").hover(function(event) {
-//             $(".thumbnail").addClass("visible");
-//             $(".thumbnail").css("top", event.pageY);
-//             $(".thumbnail").css("left", event.pageX);
+//          hoverscheda = true;
 //
-//
-//
-//
-//
-//       })
-// });
-//
-//
-// $(document).ready(function() {
-//   $(".scheda_click").mouseleave(function() {
-//     console.log("false")
-//     $('.thumbnail').removeClass("visible");
-//   })
-//   });
+//   } else {
+//     hoverscheda = false;
+//   }
+// })
+// })
+
+
+
+$(document).ready(function() {
+
+
+
+
+
+          $(".scheda_click").hover(function() {
+             $(document).mousemove(function(e) {
+
+
+               if (scheda != '0' && $("#" + scheda + "> .scheda_click").is(":hover")) {
+                 $("#" + scheda + "> .scheda_click").css("cursor", "default");
+                 $('.thumbnail').removeClass("visible");
+               } else {
+                 $(".thumbnail").addClass("visible");
+                 $(".thumbnail").css("top", e.pageY);
+                 $(".thumbnail").css("left", e.pageX);
+                 $(".scheda_click").css("cursor", "none");
+               }
+
+
+
+      })
+    })
+});
+
+
+$(document).ready(function() {
+  $(".scheda_click").mouseleave(function() {
+     $(document).mousemove(function(e) {
+    console.log("false")
+    $('.thumbnail').removeClass("visible");
+      })
+  })
+  });
+
+
+
+
 
 // $(document).ready(function() {
 // $('.scheda_click').on({
