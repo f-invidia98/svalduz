@@ -79,18 +79,23 @@ $(document).ready(function() {
 
 
       })
+    }, function() {
+       $(document).mousemove(function(e) {
+      console.log("false")
+      $('.thumbnail').removeClass("visible");
+        })
     })
 });
 
 
-$(document).ready(function() {
-  $(".scheda_click").mouseleave(function() {
-     $(document).mousemove(function(e) {
-    console.log("false")
-    $('.thumbnail').removeClass("visible");
-      })
-  })
-  });
+// $(document).ready(function() {
+//   $(".scheda_click").mouseleave(function() {
+//      $(document).mousemove(function(e) {
+//     console.log("false")
+//     $('.thumbnail').removeClass("visible");
+//       })
+//   })
+//   });
 
 
 
