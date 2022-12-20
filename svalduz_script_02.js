@@ -66,10 +66,11 @@ $(document).ready(function() {
              $(document).mousemove(function(e) {
 
 
-               if (scheda != '0' && $("#" + scheda + "> .scheda_click").is(":hover")) {
+               if (scheda != '0' && $("#" + scheda + "> .scheda_click").is(":hover") && $("#" + scheda).hasClass("cantopen")) {
                  $("#" + scheda + "> .scheda_click").css("cursor", "default");
                  $('.thumbnail').removeClass("visible");
                } else {
+                 
                  $(".thumbnail").addClass("visible");
                  $(".thumbnail").css("top", e.pageY);
                  $(".thumbnail").css("left", e.pageX);
@@ -88,14 +89,14 @@ $(document).ready(function() {
 });
 
 
-// $(document).ready(function() {
-//   $(".scheda_click").mouseleave(function() {
-//      $(document).mousemove(function(e) {
-//     console.log("false")
-//     $('.thumbnail').removeClass("visible");
-//       })
-//   })
-//   });
+  // $(document).ready(function() {
+  //   $(".scheda_click").mouseleave(function() {
+  //      $(document).mousemove(function(e) {
+  //     console.log("false")
+  //     $('.thumbnail').removeClass("visible");
+  //       })
+  //   })
+  //   });
 
 
 
@@ -313,7 +314,7 @@ function stato_verifier() {
 
 
 
-      }else {
+      }else{
 
         scheda = state.scheda;
 
@@ -465,32 +466,17 @@ function scheda_scroll(gen){
 
 function scheda_func(scheda){
 console.log("scheda_func")
-
-
+if($("#" + scheda).hasClass("cantopen") == false){
 
 
   if (open == true) {
-
-
-
     $(".scheda_hide").addClass("hide")
     $("#" + scheda + " > .scheda_click").removeClass("blue")
-
     open = false;
-
     slideIndex = 1;
     $('.immagine').click();
-
-
-
-
     remove_scheda_from_url();
-
   } else if (open == false) {
-
-
-
-
     setTimeout(function(){
 
 //         $("#" + scheda).css({
@@ -535,26 +521,14 @@ console.log("scheda_func")
   //
   //       },400)
 
-  scheda_open(scheda, scheda_scroll);
-
-      open = true;
-
-    },400)
-
-      // showSlides(1, $(".immagini"))
 
 
-
-
-
-
-
-
-
+    scheda_open(scheda, scheda_scroll);
+        open = true;
+      },400)
+    }
 
   }
-
-
 }
 
 

@@ -442,6 +442,9 @@ body{
   padding-top: 23px;
 }
 
+.opacity{
+  opacity: 0.5;
+}
 
 .immagine{
   display: block;
