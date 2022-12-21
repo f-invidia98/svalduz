@@ -53,39 +53,69 @@ var hoverscheda;
 //   }
 // })
 // })
+var mouseX;
+var mouseY;
 
+function showImage() {
+
+
+
+     if (scheda != '0') {
+       stopshowImage()
+     } else{
+       $(".thumbnail").attr("src", "Assets/PREVIEWS/" + $(event.target).parent().attr("id") + ".jpg")
+       $(".thumbnail").addClass("visible");
+       $(".scheda_click").css("cursor", "none");
+     }
+
+
+
+
+}
+
+// , function() {
+// $(document).mousemove(function(e) {
+// console.log("false")
+// $('.thumbnail').removeClass("visible");
+// })
+// }
+
+function newSetInterval(callback, duration, callbackArguments) {
+    callback.apply(this, callbackArguments);
+    var args = arguments,
+        scope = this;
+
+    setTimeout(function() {
+        newSetInterval.apply(scope, args);
+    }, duration);
+}
+
+function interval(){
+
+     newSetInterval(showImage, 1);
+
+
+}
+
+function stopshowImage(){
+  console.log("prseo");
+  $("#" + scheda + "> .scheda_click").css("cursor", "default");
+  $('.thumbnail').removeClass("visible");
+  $(".scheda_click").css("cursor", "default");
+}
 
 
 $(document).ready(function() {
+  $(document).mousemove(function(e) {
 
 
+    mouseX = e.pageX
+    mouseY = e.pageY
 
+    $(".thumbnail").css("top", mouseY);
+    $(".thumbnail").css("left", mouseX);
 
-
-          $(".scheda_click").hover(function() {
-             $(document).mousemove(function(e) {
-
-
-               if (scheda != '0' && $("#" + scheda + "> .scheda_click").is(":hover") && $("#" + scheda).hasClass("cantopen")) {
-                 $("#" + scheda + "> .scheda_click").css("cursor", "default");
-                 $('.thumbnail').removeClass("visible");
-               } else {
-                 
-                 $(".thumbnail").addClass("visible");
-                 $(".thumbnail").css("top", e.pageY);
-                 $(".thumbnail").css("left", e.pageX);
-                 $(".scheda_click").css("cursor", "none");
-               }
-
-
-
-      })
-    }, function() {
-       $(document).mousemove(function(e) {
-      console.log("false")
-      $('.thumbnail').removeClass("visible");
-        })
-    })
+});
 });
 
 
@@ -285,17 +315,22 @@ $(".scheda_click").click(function() {
 
 function stato_verifier() {
 
-
-
   if (state.gen == "0") {
     gen_0()
+  } else if (state.gen != "0") {
 
-  }
-  else if (state.gen != "0") {
-      $(".menu_voce").addClass("menu_dis");
+
+
+
+
+    $(".menu_voce").addClass("menu_dis");
+
     if (state.gen == "studio") {
+
       stud();
+
     } else {
+
       gen = state.gen;
 
 
@@ -525,7 +560,7 @@ if($("#" + scheda).hasClass("cantopen") == false){
 
     scheda_open(scheda, scheda_scroll);
         open = true;
-      },400)
+      },1000)
     }
 
   }
