@@ -15,8 +15,15 @@ var slides;
 //         $(this).html($(this).html().replace(/&#8232;/g," "));
 //     });
 // });
+var imgDimVar;
 
+function imgDim(){
+  imgDimVar = (window.innerWidth/2-60)/3*2
+  $(".immagine").css("height", imgDimVar);
+console.log("what");
+}
 
+imgDim();
 
   let vh = window.innerHeight * 0.01;
 // Then we set the value in the --vh custom property to the root of the document
@@ -58,6 +65,8 @@ var mouseY;
 
 function showImage() {
 
+if ($(window).width() > 550) {
+
 
 
      if (scheda != '0') {
@@ -66,10 +75,13 @@ function showImage() {
        $(".thumbnail").attr("src", "Assets/PREVIEWS/" + $(event.target).parent().attr("id") + ".jpg")
        $(".thumbnail").addClass("visible");
        $(".scheda_click").css("cursor", "none");
+
      }
 
 
 
+
+}
 
 }
 
@@ -114,7 +126,7 @@ $(document).ready(function() {
 
     $(".thumbnail").css("top", mouseY);
     $(".thumbnail").css("left", mouseX);
-
+    imgDim()
 });
 });
 
@@ -449,6 +461,7 @@ $(window).resize(function() {
     if (open == true) {
       $("#" + scheda).children(".scheda_hide").css("height","")
       console.log("ei")
+      imgDim()
     }else {
 
     }
@@ -896,6 +909,7 @@ function fullScreenResize() {
   }
 
 function exitFullscreen() {
+  console.log("yos");
   if (!$(".fullscreen").hasClass("hide")) {
     $(".fullscreen").addClass("hide")
     $(".immagine").removeClass("immagine_big")
