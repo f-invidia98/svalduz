@@ -10,7 +10,6 @@ import {
 	DoubleSide,
 	FileLoader,
 	FrontSide,
-	GLTFLoader,
 	Group,
 	ImageBitmapLoader,
 	InstancedMesh,
