@@ -17,10 +17,41 @@ var slides;
 // });
 var imgDimVar;
 
+function imgVerticale(){
+  return $(".immagine").naturalHeight > $(".immagine").naturalWidth;
+}
+
 function imgDim(){
+    if ($(window).width() > 550) {
   imgDimVar = (window.innerWidth/2-60)/3*2
-  $(".immagine").css("height", imgDimVar);
-console.log("what");
+}else {
+  imgDimVar = (window.innerWidth-30)/3*2
+}
+
+    for (var i = 0; i < $("img").length; i++) {
+
+        if ($("img")[i].naturalHeight > $("img")[i].naturalWidth) {
+        $($("img")[i]).css("height", imgDimVar);
+
+        }else {
+
+          $($("img")[i]).css("width", "100%");
+          // $("img").css("height", imgDimVar);
+        }
+
+
+
+
+    }
+
+    // $("img").filter(imgVerticale).css("display", "none")
+
+
+
+
+
+
+
 }
 
 imgDim();
