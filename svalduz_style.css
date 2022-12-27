@@ -405,7 +405,7 @@ body{
   z-index: 5;
   background-color: white;
   transition: 0.4s;
-  transform: translate(0, 0%);
+  transform: translate(0, -100%);
 }
 
 
