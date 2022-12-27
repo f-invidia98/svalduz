@@ -41,6 +41,12 @@
 #entra{
   transition: 0.3s;
 
+
+}
+.fontIndex{
+
+    font-size: 12pt;
+
 }
 
 .underline{
@@ -449,7 +455,7 @@ body{
 }
 
 .immagini{
-  padding-top: 23px;
+
 }
 
 .opacity{
@@ -458,6 +464,7 @@ body{
 
 .immagine{
   display: block;
+    padding-top: 23px;
 
 
   max-width: 100%;
@@ -701,9 +708,12 @@ display: none;
 
 @media only screen and (max-width: 550px) {
 
-  #entra{
 
-    font-size: 22pt;
+
+  .fontIndex{
+
+      font-size: 12pt;
+
   }
   html{
     height: 100vh; /* Fallback for browsers that do not support Custom Properties */

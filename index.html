@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+      <meta name="viewport" content="width=device-width" />
     <script src="jquery.js" type="text/javascript"></script>
     <script src="three.js" type="text/javascript"></script>
     <link href="svalduz_style.css" rel="stylesheet" type="text/css">
 
   </head>
   <body>
-<div class="loadingWrap" style="position:absolute; width:100vw; height:100vh; z-index: 1000000; background: white;">
-  <div class="loading" style="position:absolute; text-align: center; bottom:65px; left:48%; transform:translate(0, 0)">
-    Loading.
+<div class="loadingWrap" style="position:absolute; width:100vw; height:100vh; z-index: 3; background: white;">
+  <div class="loadingtextWrap" style="position:absolute; width:10vw; height:100vh; background: white; left:50%">
+    <div class="loading fontIndex" style="position:absolute; text-align: center; bottom:65px; left:50%; transform:translate(0, 0); font-family: GT-America-Standard-Regular;">
+      Loading.<span class="01" style="opacity:1;">.</span><span class="02" style="opacity:0;">.</span><span class="03" style="opacity:0;">.</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="gotoWrap" style="position:absolute; width:100vw; height:100vh; z-index: 2; background: white;">
+  <div class="cursor fontIndex" id="entra" style="position:absolute; text-align: center; bottom:65px; left:50vw; transform: translate(-50%, 0); z-index:200; font-family: GT-America-Standard-Regular;">
+    Vai al sito
   </div>
 </div>
 
-
-    <div class="cursor" id="entra" style="position:absolute; bottom:65px; left:50vw; transform: translate(-50%, 0);z-index:200; font-family: GT-America-Standard-Regular;">
-      Vai al sito
-    </div>
     <div id="ThreeJS" style="position: absolute; left:0px; top:0px; transition:0.3s; width:100vw; overflow:hidden"></div>
 
     <script src="three.js"></script>
@@ -29,31 +35,45 @@
 
 function loading(){
   setTimeout(function(){
-      $(".loading").html("Loading..")
+      $(".02").css("opacity", "1")
   },700)
   setTimeout(function(){
-      $(".loading").html("Loading...")
+      $(".03").css("opacity", "1")
   },1400)
   setTimeout(function(){
-      $(".loading").html("Loading.")
+    $(".02").css("opacity", "0")
+    $(".03").css("opacity", "0")
+    $(".01").css("opacity", "1")
   },2100)
   setTimeout(function(){
-      $(".loading").html("Loading..")
+    $(".02").css("opacity", "1")
   },2800)
   setTimeout(function(){
-      $(".loading").html("Loading...")
+    $(".03").css("opacity", "1")
   },3500)
   setTimeout(function(){
-      $(".loading").html("Loading.")
+    $(".02").css("opacity", "0")
+    $(".03").css("opacity", "0")
+    $(".01").css("opacity", "1")
   },4200)
   setTimeout(function(){
-      $(".loadingWrap").css("display", "none")
+      // $(".loadingWrap").css("display", "none")
   },4900)
 
 
 }
 
-loading();
+// loading();
+
+// function fontSize(){
+//     if ($(window).width() < 550) {
+//     $(".loading").css("font-size","30pt")
+//   } else if ($(window).width() > 550) {
+//       $(".loading").css("font-size","22pt")
+//   }
+// }
+//
+// fontSize();
 
 
 
@@ -165,8 +185,38 @@ function init()
     THREE.ImageUtils.crossOrigin = '';
 
 
+                  const manager = new THREE.LoadingManager();
+                  manager.onStart = function (){
+                    setTimeout(function(){
+                        $(".02").css("opacity", "1")
+                    },700)
+                    setTimeout(function(){
+                        $(".03").css("opacity", "1")
+                    },1400)
+                    setTimeout(function(){
+                      $(".02").css("opacity", "0")
+                      $(".03").css("opacity", "0")
+                      $(".01").css("opacity", "1")
+                    },2100)
+                    setTimeout(function(){
+                      $(".02").css("opacity", "1")
+                    },2800)
+                    setTimeout(function(){
+                      $(".03").css("opacity", "1")
+                    },3500)
+                    setTimeout(function(){
+                      $(".02").css("opacity", "0")
+                      $(".03").css("opacity", "0")
+                      $(".01").css("opacity", "1")
+                    },4200)
+                    setTimeout(function(){
+                        $(".loadingWrap").css("display", "none")
+                    },4900)
 
-                  const loader = new THREE.GLTFLoader();
+
+                  }
+
+                  const loader = new THREE.GLTFLoader( manager);
 
                     loader.load( 'Assets/StudioModel.gltf', function ( gltf ) {
                       scene.add( gltf.scene );
@@ -247,21 +297,21 @@ function onDocumentMouseMove( event ) {
 
 
 
-
-function animate()
-{
-    requestAnimationFrame( animate );
-    syncframe++;
-	  render();
-
-}
-
-
-function render()
-{
-     renderer.setClearColor( 0xffffff, 0);
-     renderer.render(scene, camera);
-}
+//
+// function animate()
+// {
+//     requestAnimationFrame( animate );
+//     syncframe++;
+// 	  render();
+//
+// }
+//
+//
+// function render()
+// {
+//      renderer.setClearColor( 0xffffff, 0);
+//      renderer.render(scene, camera);
+// }
 
 
 
@@ -270,7 +320,7 @@ function render()
       $("#ThreeJS").css("opacity", "0")
     setTimeout(function(){
     window.location.href="home.html";
-  },000)
+  },001)
   })
 
 

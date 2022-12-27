@@ -32,7 +32,7 @@ function imgDim(){
 
       if ($($("img")[i]).hasClass("thumbnail")==false) {
         if ($("img")[i].naturalHeight > $("img")[i].naturalWidth) {
-        $($("img")[i]).css("height", imgDimVar);
+          $($("img")[i]).css("height", imgDimVar);
 
         }else {
 
