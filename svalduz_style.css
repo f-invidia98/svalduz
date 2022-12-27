@@ -405,12 +405,12 @@ body{
   z-index: 5;
   background-color: white;
   transition: 0.4s;
-  transform: translate(0, -100%);
+  transform: translate(0, 0%);
 }
 
 
 
-.scheda_click.normal:hover ~ .beneath{
+.scheda_click2.normal:hover ~ .beneath{
   transform: translate(0, 0%);
 
 }

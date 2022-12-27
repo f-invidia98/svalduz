@@ -30,6 +30,7 @@ function imgDim(){
 
     for (var i = 0; i < $("img").length; i++) {
 
+      if ($($("img")[i]).hasClass("thumbnail")==false) {
         if ($("img")[i].naturalHeight > $("img")[i].naturalWidth) {
         $($("img")[i]).css("height", imgDimVar);
 
@@ -38,6 +39,9 @@ function imgDim(){
           $($("img")[i]).css("width", "100%");
           // $("img").css("height", imgDimVar);
         }
+      }
+
+
 
 
 
@@ -157,7 +161,7 @@ $(document).ready(function() {
 
     $(".thumbnail").css("top", mouseY);
     $(".thumbnail").css("left", mouseX);
-    imgDim()
+
 });
 });
 
@@ -492,7 +496,7 @@ $(window).resize(function() {
     if (open == true) {
       $("#" + scheda).children(".scheda_hide").css("height","")
       console.log("ei")
-      imgDim()
+
     }else {
 
     }
