@@ -61,7 +61,7 @@ function loading(){
     $(".01").css("opacity", "1")
   },4200)
   setTimeout(function(){
-      // $(".loadingWrap").css("display", "none")
+      $(".loadingWrap").css("display", "none")
   },4900)
 
 
@@ -191,31 +191,7 @@ function init()
 
                   const manager = new THREE.LoadingManager();
                   manager.onStart = function (){
-                    setTimeout(function(){
-                        $(".02").css("opacity", "1")
-                    },700)
-                    setTimeout(function(){
-                        $(".03").css("opacity", "1")
-                    },1400)
-                    setTimeout(function(){
-                      $(".02").css("opacity", "0")
-                      $(".03").css("opacity", "0")
-                      $(".01").css("opacity", "1")
-                    },2100)
-                    setTimeout(function(){
-                      $(".02").css("opacity", "1")
-                    },2800)
-                    setTimeout(function(){
-                      $(".03").css("opacity", "1")
-                    },3500)
-                    setTimeout(function(){
-                      $(".02").css("opacity", "0")
-                      $(".03").css("opacity", "0")
-                      $(".01").css("opacity", "1")
-                    },4200)
-                    setTimeout(function(){
-                        $(".loadingWrap").css("display", "none")
-                    },4900)
+                  loading();
 
 
                   }
