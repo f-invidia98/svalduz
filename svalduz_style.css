@@ -65,6 +65,7 @@
 
 html {
     height: 100%;
+    height: calc(var(--vh, 1vh) * 100);
     overflow: hidden;
     cursor: default;
     -webkit-font-smoothing: antialiased;
@@ -102,7 +103,7 @@ html {
   width: 50%;
   top: 0;
   line-height: 100vh;
-  line-height: calc(var(--vh, 1vh) * 100);
+  line-
   padding: 3px;
   transition: 1.4s;
 }
@@ -199,7 +200,7 @@ a{
 body{
   width: 100vw;
   height: 100vh;
-      height: calc(var(--vh, 1vh) * 100);
+
     line-height: 14pt;
 
 
@@ -319,14 +320,14 @@ body{
   display: inline-block;
   width: 50%;
   height: 100vh;
-      height: calc(var(--vh, 1vh) * 100);
+
   transition: 0.1s;
 }
 
 .pos{
   padding-top: auto;
   line-height: 100vh;
-  line-height: calc(var(--vh, 1vh) * 100);
+  line-
   vertical-align: middle;
   text-align: center;
   /* transition: 0.2s; */
@@ -487,7 +488,7 @@ body{
   padding-bottom: 15px;
   overflow: hidden;
   height: auto;
-  /* height: calc(var(--vh, 1vh) * 100); */
+  /*  */
   width: auto;
   left: 15px;
 
@@ -502,7 +503,7 @@ body{
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-      height: calc(var(--vh, 1vh) * 100);
+
   /* opacity: 0.8; */
   z-index: 10;
   background-color: white ;
@@ -600,7 +601,7 @@ body{
   display: none;
   border-right: 1px solid black;
 height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+
 
 
 
