@@ -87,6 +87,9 @@ html {
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
   background: white;
   transition: 1.7s;
   z-index: 1000000;
@@ -103,14 +106,14 @@ html {
   width: 50%;
   top: 0;
   line-height: 100vh;
-  line-
+  line-height: calc(var(--vh, 1vh) * 100);
   padding: 3px;
   transition: 1.4s;
 }
 
 .studio_landing{
   text-align: right;
-  left: 0;
+  left: 0%;
 }
 
 .studio_dis{

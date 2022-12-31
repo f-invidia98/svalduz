@@ -244,11 +244,11 @@ setTimeout(function(){
     $(".landingPage").addClass("landing_dis")
   }, 1900)
 
-}, 300)
+}, 1000)
 
 setInterval(function() {
 $(".menu_voce").addClass("menu_dis")
-},2300)
+},3000)
 
 }
 
@@ -871,6 +871,8 @@ function showSlides(n, slides) {
 
 $(".full").click(function() {
   enterFullscreen();
+  slides = $(this).parent().parent().children(".immagini").children(".immagine");
+  chiudiPosition($(slides[slideIndex-1]).height())
 })
 
 $(".fullscreen").click(function() {
@@ -902,7 +904,7 @@ function enterFullscreen() {
     $(".immagine").addClass("immagine_big")
     // $(".immagine_big").css("top", "calc(" + $(".archivio-text").outerHeight() + "px + " + $(".indice").outerHeight() + "px)")
     $(".immagine_big").css("top", "15px")
-    chiudiPosition($(".immagine_big").height());
+    // chiudiPosition($(".immagine_big").height());
 
     // $(".immagine_big").css("height", $(".schede").outerHeight() - 10)
 
