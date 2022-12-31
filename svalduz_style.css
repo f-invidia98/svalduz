@@ -17,6 +17,8 @@
 }
 
 
+
+
 .thumbnail{
   display: none;
   z-index: 300000000000000000000000000;
@@ -713,7 +715,14 @@ display: none;
 @media only screen and (max-width: 550px) {
 
 
+  .half{
+    height: 90px;
+    overflow: hidden;
+  }
+  .archivio-text{
+    transition: 0.5s;
 
+  }
   .fontIndex{
 
       font-size: 12pt;
