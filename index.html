@@ -210,6 +210,9 @@ function init()
 
                   const loader = new THREE.GLTFLoader( manager);
 
+                  dracoLoader.setDecoderPath( '/examples/jsm/libs/draco/' );
+                  loader.setDRACOLoader( dracoLoader );
+
                     loader.load( 'Assets/StudioModel.gltf', function ( gltf ) {
                       scene.add( gltf.scene );
                       gltf.animations; // Array<THREE.AnimationClip>
